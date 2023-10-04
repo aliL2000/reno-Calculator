@@ -75,8 +75,12 @@ WSGI_APPLICATION = 'renoCalc.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'renocalcdb',          # Name of your PostgreSQL database
+        'USER': 'testing',        # Your PostgreSQL username
+        'PASSWORD': '1234',  # Your PostgreSQL password
+        'HOST': 'localhost',       # Set the host to the PostgreSQL server
+        'PORT': '',   
     }
 }
 
