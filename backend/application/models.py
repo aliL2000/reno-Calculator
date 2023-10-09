@@ -6,7 +6,7 @@ class User(models.Model):
     name = models.CharField(max_length=100)
     email = models.CharField(max_length=100)
     phoneNumber = models.CharField(max_length=15)
-    location = models.CharField(max_length=100)
+    address = models.CharField(max_length=100)
 
     #User must have EITHER email OR phoneNumber provided
     class Meta:
@@ -18,3 +18,10 @@ class User(models.Model):
                 ),
             )
         ]
+
+class Contractor(models.Model):
+    name = models.CharField(max_length=100)
+    email = models.CharField(max_length=100)
+    phoneNumber = models.CharField(max_length=15)
+    address = models.CharField(max_length=100)
+    website_link = models.URLField(max_length=200, blank=True, null=True)
