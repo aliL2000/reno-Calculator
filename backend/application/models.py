@@ -1,6 +1,5 @@
 from django.db import models
 
-# Create your models here.
 
 class User(models.Model):
     name = models.CharField(max_length=100)
@@ -8,7 +7,7 @@ class User(models.Model):
     phoneNumber = models.CharField(max_length=15)
     address = models.CharField(max_length=100)
 
-    #User must have EITHER email OR phoneNumber provided
+    # User must have EITHER email OR phoneNumber provided
     class Meta:
         constraints = [
             models.CheckConstraint(
@@ -18,6 +17,7 @@ class User(models.Model):
                 ),
             )
         ]
+
 
 class Contractor(models.Model):
     name = models.CharField(max_length=100)
