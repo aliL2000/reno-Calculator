@@ -60,7 +60,7 @@ class ContractorTestCases(TestCase):
             email="johndoe@example.com",
             phoneNumber="1234567890",
             address="123 Main St",
-            website_link="https://test.com"
+            website_link="https://test.com",
         )
         contractorWithAllFields.full_clean()
         contractorWithAllFields.save()
@@ -71,12 +71,21 @@ class ContractorTestCases(TestCase):
             name="John Doe",
             email="johndoe@example.com",
             phoneNumber="1234567890",
-            address="123 Main St"
+            address="123 Main St",
         )
         contractorWithNoWebsite.full_clean()
         contractorWithNoWebsite.save()
         self.assertTrue(Contractor.objects.filter(name="John Doe").exists())
 
+    def testContractorWithNoNameProvided(self):
+        with self.assertRaises(ValidationError):
+            contractorWithNoName = Contractor.objects.create(
+                email="johndoe@example.com",
+                phoneNumber="1234567890",
+                address="123 Main St",
+                website_link="https://test.com",
+            )
+            contractorWithNoName.full_clean()
 
     def testContractorWithNoFieldsProvided(self):
         with self.assertRaises(ValidationError):
