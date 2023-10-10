@@ -54,14 +54,31 @@ class ContractorTestCases(TestCase):
     def setUp(self):
         call_command("flush", interactive=False)
 
-    def testUserCreationWithNoFieldsProvided(self):
-        contractorWithAllFieldsProvided = Contractor.objects.create(
+    def testContractorWithAllFieldsProvided(self):
+        contractorWithAllFields = Contractor.objects.create(
             name="John Doe",
             email="johndoe@example.com",
             phoneNumber="1234567890",
             address="123 Main St",
             website_link="https://test.com"
         )
-        contractorWithAllFieldsProvided.full_clean()
-        contractorWithAllFieldsProvided.save()
+        contractorWithAllFields.full_clean()
+        contractorWithAllFields.save()
         self.assertTrue(Contractor.objects.filter(name="John Doe").exists())
+
+    def testContractorWithNoWebsiteProvided(self):
+        contractorWithNoWebsite = Contractor.objects.create(
+            name="John Doe",
+            email="johndoe@example.com",
+            phoneNumber="1234567890",
+            address="123 Main St"
+        )
+        contractorWithNoWebsite.full_clean()
+        contractorWithNoWebsite.save()
+        self.assertTrue(Contractor.objects.filter(name="John Doe").exists())
+
+
+    def testContractorWithNoFieldsProvided(self):
+        with self.assertRaises(ValidationError):
+            contractorWithNoFieldsProvided = Contractor.objects.create()
+            contractorWithNoFieldsProvided.full_clean()
