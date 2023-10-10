@@ -1,18 +1,11 @@
 from django.test import TestCase
 from application.models import User, Contractor
 from django.core.exceptions import ValidationError
-
+from django.core.management import call_command
 
 # TESTING USER CLASS
 class UserTestCases(TestCase):
     def setUp(self):
-        # Clear the database by flushing it
-        self._reset_database()
-
-    def _reset_database(self):
-        # This function clears the database by flushing it
-        from django.core.management import call_command
-
         call_command("flush", interactive=False)
 
     def testCreateUserWithAllFieldsProvided(self):
@@ -54,3 +47,7 @@ class UserTestCases(TestCase):
         with self.assertRaises(ValidationError):
             userWithNoFields = User.objects.create()
             userWithNoFields.full_clean()
+
+class ContractorTestCases(TestCase):
+    def setUp(self):
+        call_command("flush", interactive=False)
