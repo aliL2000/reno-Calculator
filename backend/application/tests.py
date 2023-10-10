@@ -43,9 +43,14 @@ class UserTestCases(TestCase):
         self.assertTrue(User.objects.filter(name="John Doe").exists())
 
     def testUserCreationWithNoPhoneNumberOrEmailProvided(self):
-        # This test's checks to see when attempting to submit a user with no email or phone number, the clean method should create a Validation Error
+        # This test checks to see when attempting to submit a user with no email or phone number, the clean method should create a Validation Error
         with self.assertRaises(ValidationError):
             userWithNoPhoneNumberOrEmail = User.objects.create(
                 name="John Doe", address="123 Main St"
             )
             userWithNoPhoneNumberOrEmail.full_clean()
+
+    def testUserCreationWithNoFieldsProvided(self):
+        with self.assertRaises(ValidationError):
+            userWithNoFields = User.objects.create()
+            userWithNoFields.full_clean()
