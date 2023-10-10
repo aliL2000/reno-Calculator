@@ -50,6 +50,7 @@ class UserTestCases(TestCase):
             userWithNoFields.full_clean()
 
 
+# TESTING CONTRACTOR CLASS
 class ContractorTestCases(TestCase):
     def setUp(self):
         call_command("flush", interactive=False)
