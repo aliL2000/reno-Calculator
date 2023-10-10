@@ -4,40 +4,53 @@ from django.core.exceptions import ValidationError
 
 #TESTING USER CLASS
 class UserTestCases(TestCase):
-    def test_create_user_with_all_fields(self):
-        user_with_all_fields = User.objects.create(
-            name="JohnDoe1",
+
+    def setUp(self):
+        # Clear the database by flushing it
+        self._reset_database()
+
+    def _reset_database(self):
+        # This function clears the database by flushing it
+        from django.core.management import call_command
+        call_command('flush', interactive=False)
+
+
+    def testCreateUserWithAllFieldsProvided(self):
+        userWithAllFields = User.objects.create(
+            name="John Doe",
             email="johndoe@example.com",
             phoneNumber="1234567890",
             address="123 Main St"
         )
-        user_with_all_fields_exists = User.objects.filter(name="JohnDoe1").exists()
-        self.assertTrue(user_with_all_fields_exists)
+        userWithAllFields.full_clean()
+        userWithAllFields.save()
+        self.assertTrue(User.objects.filter(name="John Doe").exists())
             
-    def test_create_user_with_only_email_provided(self):
-        user_with_only_email = User.objects.create(
-            name="JohnDoe2",
+    def testCreateUserWithOnlyEmailProvided(self):
+        userWithOnlyEmail = User.objects.create(
+            name="John Doe",
             email="johndoe@example.com",
             address="123 Main St"
         )
-        user_with_only_email_exists = User.objects.filter(name="JohnDoe2").exists()
-        self.assertTrue(user_with_only_email_exists)   
+        userWithOnlyEmail.full_clean()
+        userWithOnlyEmail.save()
+        self.assertTrue(User.objects.filter(name="John Doe").exists())   
 
-    def test_create_user_with_only_phone_number_provided(self):
+    def testCreateUserWithOnlyPhoneNumberProvided(self):
         userWithOnlyPhoneNumber = User.objects.create(
-            name="JohnDoe3",
+            name="John Doe",
             phoneNumber="1234567890",
             address="123 Main St"
         )
         userWithOnlyPhoneNumber.full_clean()
         userWithOnlyPhoneNumber.save()
-        self.assertTrue(User.objects.filter(name="JohnDoe3").exists())     
+        self.assertTrue(User.objects.filter(name="John Doe").exists())     
 
-    def testUserCreationWithNoPhoneNumberOrEmail(self):
-
+    def testUserCreationWithNoPhoneNumberOrEmailProvided(self):
+        #This test's checks to see when attempting to submit a user with no email or phone number, the clean method should create a Validation Error
         with self.assertRaises(ValidationError):
             userWithNoPhoneNumberOrEmail = User.objects.create(
-                name="JohnDoe4",
+                name="John Doe",
                 address="123 Main St"
             )
             userWithNoPhoneNumberOrEmail.full_clean()
