@@ -34,14 +34,6 @@ class UserTestCases(TestCase):
         self.assertTrue(User.objects.filter(name="JohnDoe3").exists())     
 
     def testUserCreationWithNoPhoneNumberOrEmail(self):
-        # userWithNoPhoneNumberOrEmail = User.objects.create(
-        #     name="JohnDoe4",
-        #     address="123 Main St"
-        # )
-        # print(User.objects)
-        # userWithNoPhoneNumberOrEmailNotExisting = User.objects.filter(name="JohnDoe4")
-        # print(userWithNoPhoneNumberOrEmailNotExisting.values())
-        # self.assertTrue(userWithNoPhoneNumberOrEmailNotExisting.exists) 
 
         with self.assertRaises(ValidationError):
             userWithNoPhoneNumberOrEmail = User.objects.create(
