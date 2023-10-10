@@ -3,6 +3,7 @@ from application.models import User, Contractor
 from django.core.exceptions import ValidationError
 from django.core.management import call_command
 
+
 # TESTING USER CLASS
 class UserTestCases(TestCase):
     def setUp(self):
@@ -48,6 +49,19 @@ class UserTestCases(TestCase):
             userWithNoFields = User.objects.create()
             userWithNoFields.full_clean()
 
+
 class ContractorTestCases(TestCase):
     def setUp(self):
         call_command("flush", interactive=False)
+
+    def testUserCreationWithNoFieldsProvided(self):
+        contractorWithAllFieldsProvided = Contractor.objects.create(
+            name="John Doe",
+            email="johndoe@example.com",
+            phoneNumber="1234567890",
+            address="123 Main St",
+            website_link="https://test.com"
+        )
+        contractorWithAllFieldsProvided.full_clean()
+        contractorWithAllFieldsProvided.save()
+        self.assertTrue(Contractor.objects.filter(name="John Doe").exists())
