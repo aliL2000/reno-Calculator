@@ -1,20 +1,51 @@
 from django.test import TestCase
 from application.models import User, Contractor
+from django.core.exceptions import ValidationError
 
 #TESTING USER CLASS
 class UserTestCases(TestCase):
     def test_create_user_with_all_fields(self):
-        # Create a user with all fields supplied
-        user = User.objects.create(
-            name="John Doe",
+        user_with_all_fields = User.objects.create(
+            name="JohnDoe1",
             email="johndoe@example.com",
             phoneNumber="1234567890",
             address="123 Main St"
         )
+        user_with_all_fields_exists = User.objects.filter(name="JohnDoe1").exists()
+        self.assertTrue(user_with_all_fields_exists)
+            
+    def test_create_user_with_only_email_provided(self):
+        user_with_only_email = User.objects.create(
+            name="JohnDoe2",
+            email="johndoe@example.com",
+            address="123 Main St"
+        )
+        user_with_only_email_exists = User.objects.filter(name="JohnDoe2").exists()
+        self.assertTrue(user_with_only_email_exists)   
 
-        # Query the database to check if the user was created
-        user_exists = User.objects.filter(name="John Doe").exists()
+    def test_create_user_with_only_phone_number_provided(self):
+        userWithOnlyPhoneNumber = User.objects.create(
+            name="JohnDoe3",
+            phoneNumber="1234567890",
+            address="123 Main St"
+        )
+        userWithOnlyPhoneNumber.full_clean()
+        userWithOnlyPhoneNumber.save()
+        self.assertTrue(User.objects.filter(name="JohnDoe3").exists())     
 
-        # Assert that the user was created successfully
-        self.assertTrue(user_exists)
+    def testUserCreationWithNoPhoneNumberOrEmail(self):
+        # userWithNoPhoneNumberOrEmail = User.objects.create(
+        #     name="JohnDoe4",
+        #     address="123 Main St"
+        # )
+        # print(User.objects)
+        # userWithNoPhoneNumberOrEmailNotExisting = User.objects.filter(name="JohnDoe4")
+        # print(userWithNoPhoneNumberOrEmailNotExisting.values())
+        # self.assertTrue(userWithNoPhoneNumberOrEmailNotExisting.exists) 
 
+        with self.assertRaises(ValidationError):
+            userWithNoPhoneNumberOrEmail = User.objects.create(
+                name="JohnDoe4",
+                address="123 Main St"
+            )
+            userWithNoPhoneNumberOrEmail.full_clean()
