@@ -1,20 +1,93 @@
 from django.test import TestCase
-from application.models import User, Contractor
+from backend.application.models import User,Contractor
+from django.core.exceptions import ValidationError
+from django.core.management import call_command
 
-#TESTING USER CLASS
+# TESTING USER CLASS
 class UserTestCases(TestCase):
-    def test_create_user_with_all_fields(self):
-        # Create a user with all fields supplied
-        user = User.objects.create(
+    def setUp(self):
+        call_command("flush", interactive=False)
+
+    def test_CreateUserWithAllFieldsProvided(self):
+        userWithAllFields = User.objects.create(
             name="John Doe",
             email="johndoe@example.com",
             phoneNumber="1234567890",
-            address="123 Main St"
+            address="123 Main St",
         )
+        userWithAllFields.full_clean()
+        userWithAllFields.save()
+        self.assertTrue(User.objects.filter(name="John Doe").exists())
 
-        # Query the database to check if the user was created
-        user_exists = User.objects.filter(name="John Doe").exists()
+    def testCreateUserWithOnlyEmailProvided(self):
+        userWithOnlyEmail = User.objects.create(
+            name="John Doe", email="johndoe@example.com", address="123 Main St"
+        )
+        userWithOnlyEmail.full_clean()
+        userWithOnlyEmail.save()
+        self.assertTrue(User.objects.filter(name="John Doe").exists())
 
-        # Assert that the user was created successfully
-        self.assertTrue(user_exists)
+    def testCreateUserWithOnlyPhoneNumberProvided(self):
+        userWithOnlyPhoneNumber = User.objects.create(
+            name="John Doe", phoneNumber="1234567890", address="123 Main St"
+        )
+        userWithOnlyPhoneNumber.full_clean()
+        userWithOnlyPhoneNumber.save()
+        self.assertTrue(User.objects.filter(name="John Doe").exists())
 
+    def testUserCreationWithNoPhoneNumberOrEmailProvided(self):
+        # This test checks to see when attempting to submit a user with no email or phone number, the clean method should create a Validation Error
+        with self.assertRaises(ValidationError):
+            userWithNoPhoneNumberOrEmail = User.objects.create(
+                name="John Doe", address="123 Main St"
+            )
+            userWithNoPhoneNumberOrEmail.full_clean()
+
+    def testUserCreationWithNoFieldsProvided(self):
+        with self.assertRaises(ValidationError):
+            userWithNoFields = User.objects.create()
+            userWithNoFields.full_clean()
+
+
+# TESTING CONTRACTOR CLASS
+class ContractorTestCases(TestCase):
+    def setUp(self):
+        call_command("flush", interactive=False)
+
+    def testContractorWithAllFieldsProvided(self):
+        contractorWithAllFields = Contractor.objects.create(
+            name="John Doe",
+            email="johndoe@example.com",
+            phoneNumber="1234567890",
+            address="123 Main St",
+            website_link="https://test.com",
+        )
+        contractorWithAllFields.full_clean()
+        contractorWithAllFields.save()
+        self.assertTrue(Contractor.objects.filter(name="John Doe").exists())
+
+    def testContractorWithNoWebsiteProvided(self):
+        contractorWithNoWebsite = Contractor.objects.create(
+            name="John Doe",
+            email="johndoe@example.com",
+            phoneNumber="1234567890",
+            address="123 Main St",
+        )
+        contractorWithNoWebsite.full_clean()
+        contractorWithNoWebsite.save()
+        self.assertTrue(Contractor.objects.filter(name="John Doe").exists())
+
+    def testContractorWithNoNameProvided(self):
+        with self.assertRaises(ValidationError):
+            contractorWithNoName = Contractor.objects.create(
+                email="johndoe@example.com",
+                phoneNumber="1234567890",
+                address="123 Main St",
+                website_link="https://test.com",
+            )
+            contractorWithNoName.full_clean()
+
+    def testContractorWithNoFieldsProvided(self):
+        with self.assertRaises(ValidationError):
+            contractorWithNoFieldsProvided = Contractor.objects.create()
+            contractorWithNoFieldsProvided.full_clean()
