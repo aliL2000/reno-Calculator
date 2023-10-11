@@ -20,3 +20,11 @@ class Contractor(models.Model):
     phoneNumber = models.CharField(max_length=15)
     address = models.CharField(max_length=100)
     website_link = models.URLField(max_length=200, blank=True, null=True)
+
+#Below are services, will be expanding as we add more and more of these services.
+
+class LaundryAppliances(models.Model):
+    contractorName = models.ForeignKey(Contractor, on_delete=models.CASCADE)
+    subService = models.CharField(max_length=100)
+    cost = models.DecimalField(max_digits=10, decimal_places=2)
+    
