@@ -26,16 +26,16 @@ class Contractor(models.Model):
 #Below are services, will be expanding as we add more and more of these services.
 
 class LaundryAppliances(models.Model):
-    contractorName = models.ForeignKey(Contractor, on_delete=models.CASCADE)
-    subService = models.CharField(max_length=100)
+    contractor = models.ForeignKey(Contractor, on_delete=models.CASCADE)
+    service = models.CharField(max_length=100)
+    choice = models.CharField(max_length=100)
     cost = models.DecimalField(max_digits=10, decimal_places=2)
 
 @receiver(pre_save, sender=LaundryAppliances)
-def ensure_author_exists(sender, instance, **kwargs):
+def ensure_contractor_exists(sender, instance, **kwargs):
     # Check if the Author with the given name exists
     try:
-        print(instance.contractorName.name)
-        Contractor.objects.get(name=instance.contractorName.name)
+        Contractor.objects.get(name=instance.contractor.name)
     except Contractor.DoesNotExist:
-        # Author does not exist, prevent saving the Book
-        raise Exception("Contractor does not exist, ensure ")
+        # Contractor does not exist, prevent saving the LaundryAppliances instance
+        raise Exception("Contractor does not exist, ensure the contractor exists before saving")
