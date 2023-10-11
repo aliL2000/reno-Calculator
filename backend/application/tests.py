@@ -116,6 +116,27 @@ class LaundryApplianceTestCases(TestCase):
             choice="Top Load",
             cost=1000,
         )
-        self.assertTrue( LaundryAppliances.objects.filter(service="Washing Machine", choice="Top Load" ).exists())
+        self.assertTrue(
+            LaundryAppliances.objects.filter(
+                service="Washing Machine", choice="Top Load"
+            ).exists()
+        )
 
-    
+    def testLaundryApplianceWithContractorNotMade(self):
+        # Initialize the contractor and save the DB
+        contractorWithAllFields = Contractor(
+            name="John Doe",
+            email="johndoe@example.com",
+            phoneNumber="1234567890",
+            address="123 Main St",
+            website_link="https://test.com",
+        )
+        self.assertFalse(Contractor.objects.filter(name="John Doe").exists())
+
+        with self.assertRaises(Exception):
+            laundryApplianceServiceWithAllFields = LaundryAppliances.objects.create(
+                contractor=contractorWithAllFields,
+                service="Washing Machine",
+                choice="Top Load",
+                cost=1000,
+            )
