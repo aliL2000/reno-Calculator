@@ -1,7 +1,8 @@
 from django.test import TestCase
-from application.models import User,Contractor, LaundryAppliances
+from application.models import User, Contractor, LaundryAppliances
 from django.core.exceptions import ValidationError
 from django.core.management import call_command
+
 
 # TESTING USER CLASS
 class UserTestCases(TestCase):
@@ -48,6 +49,7 @@ class UserTestCases(TestCase):
             userWithNoFields = User.objects.create()
             userWithNoFields.full_clean()
 
+
 # TESTING CONTRACTOR CLASS
 class ContractorTestCases(TestCase):
     def setUp(self):
@@ -91,12 +93,13 @@ class ContractorTestCases(TestCase):
             contractorWithNoFieldsProvided = Contractor.objects.create()
             contractorWithNoFieldsProvided.full_clean()
 
+
 class LaundryApplianceTestCases(TestCase):
     def setUp(self):
         call_command("flush", interactive=False)
 
     def testLaundryApplianceWithContractorMade(self):
-        #Initialize the contractor and save the DB
+        # Initialize the contractor and save the DB
         contractorWithAllFields = Contractor.objects.create(
             name="John Doe",
             email="johndoe@example.com",
@@ -111,7 +114,8 @@ class LaundryApplianceTestCases(TestCase):
             contractor=contractorWithAllFields,
             service="Washing Machine",
             choice="Top Load",
-            cost = 1000
+            cost=1000,
         )
+        self.assertTrue( LaundryAppliances.objects.filter(service="Washing Machine", choice="Top Load" ).exists())
 
-        self.assertTrue(LaundryAppliances.objects.filter(service="Washing Machine",choice="Top Load").exists())
+    
