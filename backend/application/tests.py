@@ -1,5 +1,5 @@
 from django.test import TestCase
-from backend.application.models import User,Contractor
+from application.models import User,Contractor
 from django.core.exceptions import ValidationError
 from django.core.management import call_command
 
@@ -8,7 +8,7 @@ class UserTestCases(TestCase):
     def setUp(self):
         call_command("flush", interactive=False)
 
-    def test_CreateUserWithAllFieldsProvided(self):
+    def testCreateUserWithAllFieldsProvided(self):
         userWithAllFields = User.objects.create(
             name="John Doe",
             email="johndoe@example.com",
