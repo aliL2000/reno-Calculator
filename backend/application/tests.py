@@ -70,6 +70,7 @@ class ContractorTestCases(TestCase):
         )
         contractorWithAllFields.full_clean()
         contractorWithAllFields.save()
+        #Verify that a contractor with ALL fields has been created
         self.assertTrue(Contractor.objects.filter(name="John Doe").exists())
 
     def testContractorWithNoWebsiteProvided(self):
@@ -81,9 +82,11 @@ class ContractorTestCases(TestCase):
         )
         contractorWithNoWebsite.full_clean()
         contractorWithNoWebsite.save()
+        #Verify that a Contractor can exist WITHOUT a website
         self.assertTrue(Contractor.objects.filter(name="John Doe").exists())
 
     def testContractorWithNoNameProvided(self):
+        #Verify that a Validation Error occurs when not supplying a necessary field
         with self.assertRaises(ValidationError):
             contractorWithNoName = Contractor.objects.create(
                 email="johndoe@example.com",
@@ -94,6 +97,7 @@ class ContractorTestCases(TestCase):
             contractorWithNoName.full_clean()
 
     def testContractorWithNoFieldsProvided(self):
+        #Verify that a Validation Error occurs when not ANY field
         with self.assertRaises(ValidationError):
             contractorWithNoFieldsProvided = Contractor.objects.create()
             contractorWithNoFieldsProvided.full_clean()
