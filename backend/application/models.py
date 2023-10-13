@@ -55,11 +55,11 @@ def ensure_contractor_exists(sender, instance, **kwargs):
         )
 
 
-class Framers(models.Model):
-    contractor = models.ForeignKey(Contractor, on_delete=models.CASCADE)
-    subCategory = models.CharField(max_length=100)
-    materialCost = JSONField()
-    labourCost = ArrayField(models.CharField(max_length=200), blank=True)
+# class Framers(models.Model):
+#     contractor = models.ForeignKey(Contractor, on_delete=models.CASCADE)
+#     subCategory = models.CharField(max_length=100)
+#     materialCost = JSONField()
+#     labourCost = ArrayField(models.CharField(max_length=200), blank=True)
 
 
 # import math
