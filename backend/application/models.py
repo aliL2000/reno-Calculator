@@ -32,6 +32,12 @@ class Contractor(models.Model):
 
 # Below are services, will be expanding as we add more and more of these services.
 
+class RealEstateAgent(models.Model):
+    contractor = models.ForeignKey(Contractor, on_delete=models.CASCADE)
+    description = models.TextField()
+    subCategory = ArrayField(models.CharField(max_length=200))
+    regions = ArrayField(models.CharField(max_length=200))
+    materialCost = JSONField()
 
 class LaundryAppliances(models.Model):
     contractor = models.ForeignKey(Contractor, on_delete=models.CASCADE)
