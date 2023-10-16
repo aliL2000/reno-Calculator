@@ -27,7 +27,7 @@ class RealEstateAgentTestCases(TestCase):
         RealEstateAgentServiceWithAllFields = RealEstateAgent.objects.create(
             contractor=self.contractorWithAllFields,
             description="testing",
-            commission=commission_data
+            commission=commission_data,
         )
 
         RealEstateAgentServiceWithAllFields.typeOfWork.add(self.property_type1)
@@ -37,28 +37,36 @@ class RealEstateAgentTestCases(TestCase):
 
     def testRealEstateAgentWithMultiplePropertyTypesContractorMade(self):
         commission_data = {1_000_000: 2.5, 500_000: 2, 200_000: 1.5}
-        RealEstateAgentServiceWithMultiplePropertyTypes = RealEstateAgent.objects.create(
-            contractor=self.contractorWithAllFields,
-            description="testing",
-            commission=commission_data
+        RealEstateAgentServiceWithMultiplePropertyTypes = (
+            RealEstateAgent.objects.create(
+                contractor=self.contractorWithAllFields,
+                description="testing",
+                commission=commission_data,
+            )
         )
 
-        
-        RealEstateAgentServiceWithMultiplePropertyTypes.typeOfWork.add(self.property_type1,self.property_type2)
+        RealEstateAgentServiceWithMultiplePropertyTypes.typeOfWork.add(
+            self.property_type1, self.property_type2
+        )
         RealEstateAgentServiceWithMultiplePropertyTypes.regions.add(self.regions_type1)
         # Verify that the service was made with the given contractor
         self.assertTrue(RealEstateAgent.objects.filter(description="testing").exists())
 
     def testRealEstateAgentWithMultipleRegionTypesContractorMade(self):
         commission_data = {1_000_000: 2.5, 500_000: 2, 200_000: 1.5}
-        RealEstateAgentServiceWithMultiplePropertyTypes = RealEstateAgent.objects.create(
-            contractor=self.contractorWithAllFields,
-            description="testing",
-            commission=commission_data
+        RealEstateAgentServiceWithMultiplePropertyTypes = (
+            RealEstateAgent.objects.create(
+                contractor=self.contractorWithAllFields,
+                description="testing",
+                commission=commission_data,
+            )
         )
 
-        
-        RealEstateAgentServiceWithMultiplePropertyTypes.typeOfWork.add(self.property_type2)
-        RealEstateAgentServiceWithMultiplePropertyTypes.regions.add(self.regions_type1,self.regions_type2)
+        RealEstateAgentServiceWithMultiplePropertyTypes.typeOfWork.add(
+            self.property_type2
+        )
+        RealEstateAgentServiceWithMultiplePropertyTypes.regions.add(
+            self.regions_type1, self.regions_type2
+        )
         # Verify that the service was made with the given contractor
         self.assertTrue(RealEstateAgent.objects.filter(description="testing").exists())

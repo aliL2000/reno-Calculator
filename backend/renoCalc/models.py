@@ -28,7 +28,7 @@ class Contractor(models.Model):
     address = models.CharField(max_length=100)
     website_link = models.URLField(max_length=200, blank=True, null=True)
     rating = models.DecimalField(
-        max_digits=2,  
+        max_digits=2,
         decimal_places=1,
         null=True,
         blank=True,
