@@ -1,5 +1,5 @@
 from django.test import TestCase
-from application.models import Contractor, LaundryAppliances
+from renoCalc.models import Contractor, LaundryAppliances
 from django.core.management import call_command
 
 class LaundryApplianceTestCases(TestCase):

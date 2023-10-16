@@ -1,5 +1,5 @@
 from django.test import TestCase
-from application.models import User
+from renoCalc.models import User
 from django.core.exceptions import ValidationError
 from django.core.management import call_command
 
