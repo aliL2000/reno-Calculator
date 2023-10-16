@@ -64,6 +64,15 @@ class RealEstateAgent(models.Model):
 
     def __str__(self):
         return f"{self.contractor} - {self.description}"
+    
+class MortgageBroker(models.Model):
+    contractor = models.ForeignKey(Contractor, on_delete=models.CASCADE)
+    description = models.TextField()
+    financeMinimum = models.IntegerField()
+    commission = models.JSONField()
+
+    def __str__(self):
+        return f"{self.contractor} - {self.description}"
 
 
 class LaundryAppliances(models.Model):
