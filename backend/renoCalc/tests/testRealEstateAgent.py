@@ -32,7 +32,6 @@ class RealEstateAgentTestCases(TestCase):
 
         RealEstateAgentServiceWithAllFields.typeOfWork.add(self.property_type1)
         RealEstateAgentServiceWithAllFields.regions.add(self.regions_type1)
-        # Verify that the service was made with the given contractor
         self.assertTrue(RealEstateAgent.objects.filter(description="testing").exists())
 
     def testRealEstateAgentWithMultiplePropertyTypesContractorMade(self):
