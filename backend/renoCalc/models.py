@@ -3,7 +3,6 @@ from django.core.exceptions import ValidationError
 from django.dispatch import receiver
 from django.db.models.signals import pre_save
 from django.forms import JSONField
-from django.contrib.postgres.fields import ArrayField
 
 class User(models.Model):
     name = models.CharField(max_length=100)
@@ -29,15 +28,20 @@ class Contractor(models.Model):
     def __str__(self):
         return f'{self.name}'
 
+class PropertyTypeModel(models.Model):
+    name = models.CharField(max_length=50)
+
+class RegionModel(models.Model):
+    name = models.CharField(max_length=50)
 
 # Below are services, will be expanding as we add more and more of these services.
 
 class RealEstateAgent(models.Model):
     contractor = models.ForeignKey(Contractor, on_delete=models.CASCADE)
     description = models.TextField()
-    subCategory = ArrayField(models.CharField(max_length=200))
-    regions = ArrayField(models.CharField(max_length=200))
-    materialCost = JSONField()
+    typeOfWork = models.ManyToManyField(PropertyTypeModel)
+    regions = models.ManyToManyField(RegionModel)
+    commission = models.JSONField()
 
 class LaundryAppliances(models.Model):
     contractor = models.ForeignKey(Contractor, on_delete=models.CASCADE)
