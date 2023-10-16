@@ -1,8 +1,10 @@
+import decimal
 from django.db import models
 from django.core.exceptions import ValidationError
 from django.dispatch import receiver
 from django.db.models.signals import pre_save
 from django.forms import JSONField
+
 
 class User(models.Model):
     name = models.CharField(max_length=100)
@@ -16,7 +18,8 @@ class User(models.Model):
             raise ValidationError("At least one of field1 or field2 must have a value.")
 
         def __str__(self):
-            return f'{self.name} - {self.email}'
+            return f"{self.name} - {self.email}"
+
 
 class Contractor(models.Model):
     name = models.CharField(max_length=100)
@@ -24,17 +27,33 @@ class Contractor(models.Model):
     phoneNumber = models.CharField(max_length=15)
     address = models.CharField(max_length=100)
     website_link = models.URLField(max_length=200, blank=True, null=True)
+    rating = models.DecimalField(
+        max_digits=2,  
+        decimal_places=1,
+        null=True,
+        blank=True,
+    )
 
     def __str__(self):
-        return f'{self.name}'
+        return f"{self.name}"
+
 
 class PropertyTypeModel(models.Model):
     name = models.CharField(max_length=50)
 
+    def __str__(self):
+        return f"{self.name}"
+
+
 class RegionModel(models.Model):
     name = models.CharField(max_length=50)
 
+    def __str__(self):
+        return f"{self.name}"
+
+
 # Below are services, will be expanding as we add more and more of these services.
+
 
 class RealEstateAgent(models.Model):
     contractor = models.ForeignKey(Contractor, on_delete=models.CASCADE)
@@ -43,15 +62,20 @@ class RealEstateAgent(models.Model):
     regions = models.ManyToManyField(RegionModel)
     commission = models.JSONField()
 
+    def __str__(self):
+        return f"{self.contractor} - {self.description}"
+
+
 class LaundryAppliances(models.Model):
     contractor = models.ForeignKey(Contractor, on_delete=models.CASCADE)
     service = models.CharField(max_length=100)
     choice = models.CharField(max_length=100)
     cost = models.DecimalField(max_digits=10, decimal_places=2)
-    #Cost of Material and Cost of Labour
+    # Cost of Material and Cost of Labour
 
     def __str__(self):
-        return f'{self.contractor} - {self.service} - {self.choice}'
+        return f"{self.contractor} - {self.service} - {self.choice}"
+
 
 @receiver(pre_save, sender=LaundryAppliances)
 def ensure_contractor_exists(sender, instance, **kwargs):
