@@ -17,7 +17,7 @@ jobs:
     - name: Install Python Dependencies
       run: pip install -r backend/requirements.txt
     - name: Run Django Unit Tests
-      run: python backend/manage.py tests
+      run: python backend/manage.py test
     - name: Build the Docker image
       run: docker build . --file backend/Dockerfile --tag backend
     - name: Run the Docker Image
