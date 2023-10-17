@@ -1,7 +1,10 @@
-from django.urls import path
+from django.urls import path, include
+from rest_framework import routers
+from renoCalc.views import ContractorViewSet
 
-from . import views
+router = routers.DefaultRouter()
+router.register(r"contractors", ContractorViewSet, basename="contractors")
 
 urlpatterns = [
-    path("", views.index, name="index"),
+    path("", include(router.urls)),
 ]
