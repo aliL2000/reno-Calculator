@@ -30,9 +30,9 @@ class RealEstateAgentTestCases(TestCase):
         )
         self.assertTrue(MortgageBroker.objects.filter(description="test").exists())
 
-    def testMortgageBrokerWithContractorMade(self):
+    def testMortgageBrokerWithoutNecessaryField(self):
         with self.assertRaises(IntegrityError):
-            MortgageBrokerServiceWithAllFields = MortgageBroker.objects.create(
+            MortgageBrokerServiceWithSomeFields = MortgageBroker.objects.create(
                 contractor=self.contractorWithAllFields,
                 description="test",
                 commission={
