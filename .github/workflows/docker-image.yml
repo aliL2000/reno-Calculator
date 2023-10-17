@@ -15,7 +15,7 @@ jobs:
     steps: 
     - uses: actions/checkout@v3
     - name: Install Python Dependencies
-      run: pip install -r requirements.txt
+      run: pip install -r backend/requirements.txt
     - name: Run Django Unit Tests
       run: python manage.py tests
     - name: Build the Docker image
