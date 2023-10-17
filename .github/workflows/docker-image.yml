@@ -1,0 +1,24 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps: 
+    - uses: actions/checkout@v3
+    - name: Install Python Dependencies
+      run: pip install -r backend/requirements.txt
+    - name: Run Django Unit Tests
+      run: python backend/manage.py test
+    - name: Build the Docker image
+      run: docker build . --file backend/Dockerfile --tag backend
+    - name: Run the Docker Image
+      run: docker run backend -p 8000:8000
