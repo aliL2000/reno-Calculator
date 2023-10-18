@@ -28,7 +28,7 @@ class SyrveyoreTestCases(TestCase):
 
         self.assertTrue(Surveyor.objects.filter(description="testing").exists())
 
-    def tesSurveyorWithoutNecessaryField(self):
+    def testSurveyorWithoutNecessaryField(self):
         with self.assertRaises(IntegrityError):
             SurveyorServiceWithSomeFields = Surveyor.objects.create(
                 contractor=self.contractorWithAllFields,
