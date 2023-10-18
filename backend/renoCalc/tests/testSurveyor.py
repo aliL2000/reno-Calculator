@@ -4,7 +4,7 @@ from renoCalc.models import Contractor, Surveyor
 from django.core.management import call_command
 
 
-class SyrveyoreTestCases(TestCase):
+class SurveyorTestCases(TestCase):
     def setUp(self):
         call_command("flush", interactive=False)
         self.contractorWithAllFields = Contractor.objects.create(
