@@ -23,15 +23,15 @@ services:
       - ./backend
     ports:
       - "8000:8000"
-    # depends_on:
-    #   - db
-  # db:
-  #   image: postgres
-  #   volumes:
-  #     - ./postgres/database:/var/lib/postgresql/data
-  #   environment:
-  #     - POSTGRES_DB=postgres
-  #     - POSTGRES_USER=postgres
-  #     - POSTGRES_PASSWORD=postgres
-  #   ports:
-  #     - "5432:5432"
+    depends_on:
+      - db
+  db:
+    image: postgres
+    volumes:
+      - ./postgres/database:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_DB=renoCalcDB
+      - POSTGRES_USER=testing
+      - POSTGRES_PASSWORD=1234
+    ports:
+      - "5432:5432"
