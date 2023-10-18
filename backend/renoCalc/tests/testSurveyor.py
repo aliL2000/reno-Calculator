@@ -1,10 +1,10 @@
 from django.db import IntegrityError
 from django.test import TestCase
-from renoCalc.models import Contractor, RealEstateLaywer
+from renoCalc.models import Contractor, Surveyor
 from django.core.management import call_command
 
 
-class RealEstateLawyerTestCases(TestCase):
+class SyrveyoreTestCases(TestCase):
     def setUp(self):
         call_command("flush", interactive=False)
         self.contractorWithAllFields = Contractor.objects.create(
@@ -18,20 +18,20 @@ class RealEstateLawyerTestCases(TestCase):
         self.contractorWithAllFields.save()
         self.assertTrue(Contractor.objects.filter(name="John Doe").exists())
 
-    def testRealEstateLawyerWithContractorMade(self):
-        commission_data = {2.5: 1_000_000, 2: 500_000, 1.5: 200_000}
-        RealEstateLawyerServiceWithAllFields = RealEstateLaywer.objects.create(
+    def testSurveyorWithContractorMade(self):
+        commission_data = {"Home": 1_000_000, "Detached": 500_000, "Semi": 200_000}
+        SurveyorServiceWithAllFields = Surveyor.objects.create(
             contractor=self.contractorWithAllFields,
             description="testing",
             commission=commission_data,
         )
 
-        self.assertTrue(RealEstateLaywer.objects.filter(description="testing").exists())
+        self.assertTrue(Surveyor.objects.filter(description="testing").exists())
 
-    def testRealEstateLawyerWithoutNecessaryField(self):
+    def tesSurveyorWithoutNecessaryField(self):
         with self.assertRaises(IntegrityError):
-            RealEstateLawyerServiceWithSomeFields = RealEstateLaywer.objects.create(
+            SurveyorServiceWithSomeFields = Surveyor.objects.create(
                 contractor=self.contractorWithAllFields,
                 description="test",
             )
-            self.assertTrue(RealEstateLaywer.objects.filter(description="test").exists())
+            self.assertTrue(Surveyor.objects.filter(description="test").exists())
