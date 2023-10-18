@@ -1,4 +1,4 @@
-version: "3.8"
+version: "3.11"
 
 services:
   # rosen_frontend:
@@ -13,7 +13,7 @@ services:
   #     - /src/.next
   #   ports:
   #     - 3000:3000
-  rosen_backend:
+  backend:
     container_name: docker-backend-cname
     image: docker-backend-image
     build:
