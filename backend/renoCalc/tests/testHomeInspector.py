@@ -19,7 +19,7 @@ class RealEstateAgentTestCases(TestCase):
         self.assertTrue(Contractor.objects.filter(name="John Doe").exists())
 
     def testHomeInspectorWithContractorMade(self):
-        commission_data = {'Home': 1_000_000, 'Detached': 500_000, 'Semi': 200_000}
+        commission_data = {"Home": 1_000_000, "Detached": 500_000, "Semi": 200_000}
         HomeInspectorServiceWithAllFields = HomeInspector.objects.create(
             contractor=self.contractorWithAllFields,
             description="testing",

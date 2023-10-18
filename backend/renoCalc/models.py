@@ -64,7 +64,8 @@ class RealEstateAgent(models.Model):
 
     def __str__(self):
         return f"{self.contractor} - {self.description}"
-    
+
+
 class MortgageBroker(models.Model):
     contractor = models.ForeignKey(Contractor, on_delete=models.CASCADE)
     description = models.TextField()
@@ -73,7 +74,8 @@ class MortgageBroker(models.Model):
 
     def __str__(self):
         return f"{self.contractor} - {self.description}"
-    
+
+
 class RealEstateLaywer(models.Model):
     contractor = models.ForeignKey(Contractor, on_delete=models.CASCADE)
     description = models.TextField()
@@ -81,7 +83,8 @@ class RealEstateLaywer(models.Model):
 
     def __str__(self):
         return f"{self.contractor} - {self.description}"
-    
+
+
 class HomeInspector(models.Model):
     contractor = models.ForeignKey(Contractor, on_delete=models.CASCADE)
     description = models.TextField()
