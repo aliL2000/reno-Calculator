@@ -4,7 +4,7 @@ from renoCalc.models import Contractor, HomeInspector
 from django.core.management import call_command
 
 
-class RealEstateAgentTestCases(TestCase):
+class HomeInspectorTestCases(TestCase):
     def setUp(self):
         call_command("flush", interactive=False)
         self.contractorWithAllFields = Contractor.objects.create(

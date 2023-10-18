@@ -94,6 +94,15 @@ class HomeInspector(models.Model):
         return f"{self.contractor} - {self.description}"
 
 
+class Surveyor(models.Model):
+    contractor = models.ForeignKey(Contractor, on_delete=models.CASCADE)
+    description = models.TextField()
+    commission = models.JSONField()
+
+    def __str__(self):
+        return f"{self.contractor} - {self.description}"
+
+
 class LaundryAppliances(models.Model):
     contractor = models.ForeignKey(Contractor, on_delete=models.CASCADE)
     service = models.CharField(max_length=100)
