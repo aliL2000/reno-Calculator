@@ -1,13 +1,13 @@
 from django.db import IntegrityError
 from django.test import TestCase
-from renoCalc.models import Contractor, MortgageBroker
+from renoCalc.models import ContractorModel, MortgageBrokerModel
 from django.core.management import call_command
 
 
 class MortgageBrokerTestCases(TestCase):
     def setUp(self):
         call_command("flush", interactive=False)
-        self.contractorWithAllFields = Contractor.objects.create(
+        self.contractorWithAllFields = ContractorModel.objects.create(
             name="John Doe",
             email="johndoe@example.com",
             phoneNumber="1234567890",
@@ -16,10 +16,10 @@ class MortgageBrokerTestCases(TestCase):
         )
         self.contractorWithAllFields.full_clean()
         self.contractorWithAllFields.save()
-        self.assertTrue(Contractor.objects.filter(name="John Doe").exists())
+        self.assertTrue(ContractorModel.objects.filter(name="John Doe").exists())
 
     def testMortgageBrokerWithContractorMade(self):
-        MortgageBrokerServiceWithAllFields = MortgageBroker.objects.create(
+        MortgageBrokerServiceWithAllFields = MortgageBrokerModel.objects.create(
             contractor=self.contractorWithAllFields,
             description="test",
             financeMinimum=10,
@@ -28,11 +28,11 @@ class MortgageBrokerTestCases(TestCase):
                 "Construction": {"lendingFees": 2, "interest": 10},
             },
         )
-        self.assertTrue(MortgageBroker.objects.filter(description="test").exists())
+        self.assertTrue(MortgageBrokerModel.objects.filter(description="test").exists())
 
     def testMortgageBrokerWithoutNecessaryField(self):
         with self.assertRaises(IntegrityError):
-            MortgageBrokerServiceWithSomeFields = MortgageBroker.objects.create(
+            MortgageBrokerServiceWithSomeFields = MortgageBrokerModel.objects.create(
                 contractor=self.contractorWithAllFields,
                 description="test",
                 commission={
@@ -40,4 +40,4 @@ class MortgageBrokerTestCases(TestCase):
                     "Construction": {"lendingFees": 2, "interest": 10},
                 },
             )
-            self.assertTrue(MortgageBroker.objects.filter(description="test").exists())
+            self.assertTrue(MortgageBrokerModel.objects.filter(description="test").exists())
