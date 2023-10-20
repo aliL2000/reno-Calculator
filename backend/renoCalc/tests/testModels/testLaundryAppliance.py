@@ -1,5 +1,5 @@
 from django.test import TestCase
-from renoCalc.models import Contractor, LaundryAppliances
+from renoCalc.models import ContractorModel, LaundryAppliances
 from django.core.management import call_command
 
 class LaundryApplianceTestCases(TestCase):
@@ -8,7 +8,7 @@ class LaundryApplianceTestCases(TestCase):
 
     def testLaundryApplianceWithContractorMade(self):
         # Initialize the contractor and save the DB
-        contractorWithAllFields = Contractor.objects.create(
+        contractorWithAllFields = ContractorModel.objects.create(
             name="John Doe",
             email="johndoe@example.com",
             phoneNumber="1234567890",
@@ -18,7 +18,7 @@ class LaundryApplianceTestCases(TestCase):
         contractorWithAllFields.full_clean()
         contractorWithAllFields.save()
         #Verify that contractor exists within the DB
-        self.assertTrue(Contractor.objects.filter(name="John Doe").exists())
+        self.assertTrue(ContractorModel.objects.filter(name="John Doe").exists())
         laundryApplianceServiceWithAllFields = LaundryAppliances.objects.create(
             contractor=contractorWithAllFields,
             service="Washing Machine",
@@ -34,7 +34,7 @@ class LaundryApplianceTestCases(TestCase):
 
     def testLaundryApplianceWithContractorNotMade(self):
         # Initialize a contractor, but DO NOT save to the DB.
-        contractorWithAllFields = Contractor(
+        contractorWithAllFields = ContractorModel(
             name="John Doe",
             email="johndoe@example.com",
             phoneNumber="1234567890",
@@ -42,7 +42,7 @@ class LaundryApplianceTestCases(TestCase):
             website_link="https://test.com",
         )
         #Verify that the contractor DOES NOT exist within the DB
-        self.assertFalse(Contractor.objects.filter(name="John Doe").exists())
+        self.assertFalse(ContractorModel.objects.filter(name="John Doe").exists())
 
         #Verify that the BE raises an exception when attempting to create a non-saved Contractor
         with self.assertRaises(Exception):

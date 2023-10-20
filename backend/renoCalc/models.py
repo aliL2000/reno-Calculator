@@ -3,10 +3,9 @@ from django.db import models
 from django.core.exceptions import ValidationError
 from django.dispatch import receiver
 from django.db.models.signals import pre_save
-from django.forms import JSONField
 
 
-class User(models.Model):
+class UserModel(models.Model):
     name = models.CharField(max_length=100)
     email = models.CharField(max_length=100, blank=True, null=True)
     phoneNumber = models.CharField(max_length=15, blank=True, null=True)
@@ -15,13 +14,18 @@ class User(models.Model):
     def clean(self):
         super().clean()
         if self.email is None and self.phoneNumber is None:
-            raise ValidationError("At least one of field1 or field2 must have a value.")
+            raise ValidationError("At least one of email or phone Number must have a value.")
 
         def __str__(self):
             return f"{self.name} - {self.email}"
 
 
-class Contractor(models.Model):
+class UserHomeAndRenovationConfigurationModel(models.Model):
+    user = models.ForeignKey(UserModel, on_delete=models.CASCADE)
+    uniqueConfiguration = models.JSONField()
+
+
+class ContractorModel(models.Model):
     name = models.CharField(max_length=100)
     email = models.CharField(max_length=100)
     phoneNumber = models.CharField(max_length=15)
@@ -55,8 +59,8 @@ class RegionModel(models.Model):
 # Below are services, will be expanding as we add more and more of these services.
 
 
-class RealEstateAgent(models.Model):
-    contractor = models.ForeignKey(Contractor, on_delete=models.CASCADE)
+class RealEstateAgentModel(models.Model):
+    contractor = models.ForeignKey(ContractorModel, on_delete=models.CASCADE)
     description = models.TextField()
     typeOfWork = models.ManyToManyField(PropertyTypeModel)
     regions = models.ManyToManyField(RegionModel)
@@ -66,8 +70,8 @@ class RealEstateAgent(models.Model):
         return f"{self.contractor} - {self.description}"
 
 
-class MortgageBroker(models.Model):
-    contractor = models.ForeignKey(Contractor, on_delete=models.CASCADE)
+class MortgageBrokerModel(models.Model):
+    contractor = models.ForeignKey(ContractorModel, on_delete=models.CASCADE)
     description = models.TextField()
     financeMinimum = models.IntegerField()
     commission = models.JSONField()
@@ -76,8 +80,8 @@ class MortgageBroker(models.Model):
         return f"{self.contractor} - {self.description}"
 
 
-class RealEstateLaywer(models.Model):
-    contractor = models.ForeignKey(Contractor, on_delete=models.CASCADE)
+class RealEstateLaywerModel(models.Model):
+    contractor = models.ForeignKey(ContractorModel, on_delete=models.CASCADE)
     description = models.TextField()
     commission = models.JSONField()
 
@@ -85,8 +89,8 @@ class RealEstateLaywer(models.Model):
         return f"{self.contractor} - {self.description}"
 
 
-class HomeInspector(models.Model):
-    contractor = models.ForeignKey(Contractor, on_delete=models.CASCADE)
+class HomeInspectorModel(models.Model):
+    contractor = models.ForeignKey(ContractorModel, on_delete=models.CASCADE)
     description = models.TextField()
     commission = models.JSONField()
 
@@ -94,16 +98,17 @@ class HomeInspector(models.Model):
         return f"{self.contractor} - {self.description}"
 
 
-class Surveyor(models.Model):
-    contractor = models.ForeignKey(Contractor, on_delete=models.CASCADE)
+class SurveyorModel(models.Model):
+    contractor = models.ForeignKey(ContractorModel, on_delete=models.CASCADE)
     description = models.TextField()
     commission = models.JSONField()
 
     def __str__(self):
         return f"{self.contractor} - {self.description}"
-    
-class Architect(models.Model):
-    contractor = models.ForeignKey(Contractor, on_delete=models.CASCADE)
+
+
+class ArchitectModel(models.Model):
+    contractor = models.ForeignKey(ContractorModel, on_delete=models.CASCADE)
     description = models.TextField()
     commission = models.JSONField()
 
@@ -112,7 +117,7 @@ class Architect(models.Model):
 
 
 class LaundryAppliances(models.Model):
-    contractor = models.ForeignKey(Contractor, on_delete=models.CASCADE)
+    contractor = models.ForeignKey(ContractorModel, on_delete=models.CASCADE)
     service = models.CharField(max_length=100)
     choice = models.CharField(max_length=100)
     cost = models.DecimalField(max_digits=10, decimal_places=2)
@@ -126,8 +131,8 @@ class LaundryAppliances(models.Model):
 def ensure_contractor_exists(sender, instance, **kwargs):
     # Check if the contractor already exists
     try:
-        Contractor.objects.get(name=instance.contractor.name)
-    except Contractor.DoesNotExist:
+        ContractorModel.objects.get(name=instance.contractor.name)
+    except ContractorModel.DoesNotExist:
         # Contractor does not exist, prevent saving the LaundryAppliances instance
         raise Exception(
             "Contractor does not exist, ensure the contractor exists before saving"

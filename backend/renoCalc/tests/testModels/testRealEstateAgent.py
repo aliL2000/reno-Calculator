@@ -1,12 +1,12 @@
 from django.test import TestCase
-from renoCalc.models import Contractor, RealEstateAgent, PropertyTypeModel, RegionModel
+from renoCalc.models import ContractorModel, RealEstateAgentModel, PropertyTypeModel, RegionModel
 from django.core.management import call_command
 
 
 class RealEstateAgentTestCases(TestCase):
     def setUp(self):
         call_command("flush", interactive=False)
-        self.contractorWithAllFields = Contractor.objects.create(
+        self.contractorWithAllFields = ContractorModel.objects.create(
             name="John Doe",
             email="johndoe@example.com",
             phoneNumber="1234567890",
@@ -15,7 +15,7 @@ class RealEstateAgentTestCases(TestCase):
         )
         self.contractorWithAllFields.full_clean()
         self.contractorWithAllFields.save()
-        self.assertTrue(Contractor.objects.filter(name="John Doe").exists())
+        self.assertTrue(ContractorModel.objects.filter(name="John Doe").exists())
         self.property_type1 = PropertyTypeModel.objects.create(name="Semi-Detached")
         self.property_type2 = PropertyTypeModel.objects.create(name="Townhouse")
         self.property_type3 = PropertyTypeModel.objects.create(name="Detached")
@@ -24,7 +24,7 @@ class RealEstateAgentTestCases(TestCase):
 
     def testRealEstateAgentWithContractorMade(self):
         commission_data = {2.5: 1_000_000, 2: 500_000, 1.5: 200_000}
-        RealEstateAgentServiceWithAllFields = RealEstateAgent.objects.create(
+        RealEstateAgentServiceWithAllFields = RealEstateAgentModel.objects.create(
             contractor=self.contractorWithAllFields,
             description="testing",
             commission=commission_data,
@@ -32,12 +32,12 @@ class RealEstateAgentTestCases(TestCase):
 
         RealEstateAgentServiceWithAllFields.typeOfWork.add(self.property_type1)
         RealEstateAgentServiceWithAllFields.regions.add(self.regions_type1)
-        self.assertTrue(RealEstateAgent.objects.filter(description="testing").exists())
+        self.assertTrue(RealEstateAgentModel.objects.filter(description="testing").exists())
 
     def testRealEstateAgentWithMultiplePropertyTypesContractorMade(self):
         commission_data = {1_000_000: 2.5, 500_000: 2, 200_000: 1.5}
         RealEstateAgentServiceWithMultiplePropertyTypes = (
-            RealEstateAgent.objects.create(
+            RealEstateAgentModel.objects.create(
                 contractor=self.contractorWithAllFields,
                 description="testing",
                 commission=commission_data,
@@ -49,12 +49,12 @@ class RealEstateAgentTestCases(TestCase):
         )
         RealEstateAgentServiceWithMultiplePropertyTypes.regions.add(self.regions_type1)
         # Verify that the service was made with the given contractor
-        self.assertTrue(RealEstateAgent.objects.filter(description="testing").exists())
+        self.assertTrue(RealEstateAgentModel.objects.filter(description="testing").exists())
 
     def testRealEstateAgentWithMultipleRegionTypesContractorMade(self):
         commission_data = {1_000_000: 2.5, 500_000: 2, 200_000: 1.5}
         RealEstateAgentServiceWithMultiplePropertyTypes = (
-            RealEstateAgent.objects.create(
+            RealEstateAgentModel.objects.create(
                 contractor=self.contractorWithAllFields,
                 description="testing",
                 commission=commission_data,
@@ -68,4 +68,4 @@ class RealEstateAgentTestCases(TestCase):
             self.regions_type1, self.regions_type2
         )
         # Verify that the service was made with the given contractor
-        self.assertTrue(RealEstateAgent.objects.filter(description="testing").exists())
+        self.assertTrue(RealEstateAgentModel.objects.filter(description="testing").exists())
