@@ -3,6 +3,6 @@ from django.contrib import admin
 
 from .models import *
 
-admin.site.register(User)
-admin.site.register(Contractor)
+admin.site.register(UserModel)
+admin.site.register(ContractorModel)
 admin.site.register(LaundryAppliances)

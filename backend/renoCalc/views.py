@@ -1,12 +1,13 @@
-from .models import Contractor
+from .models import ContractorModel
 from .serializers import ContractorModelSerializer
 from rest_framework import viewsets
 from django.views.decorators.http import require_POST
 from django.http import HttpResponse
 
 @require_POST
-def my_view(request):
-    # Your view logic here
+def my_view(request,userID):
+
+    
     return HttpResponse("This is a POST request.")
 
 # @require_http_methods(["GET", "POST"])
@@ -17,5 +18,5 @@ def my_view(request):
 
 
 class ContractorViewSet(viewsets.ModelViewSet):
-    queryset = Contractor.objects.all()
+    queryset = ContractorModel.objects.all()
     serializer_class = ContractorModelSerializer
