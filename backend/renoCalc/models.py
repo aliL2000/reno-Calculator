@@ -59,7 +59,7 @@ class RegionModel(models.Model):
 # Below are services, will be expanding as we add more and more of these services.
 
 
-class RealEstateAgent(models.Model):
+class RealEstateAgentModel(models.Model):
     contractor = models.ForeignKey(ContractorModel, on_delete=models.CASCADE)
     description = models.TextField()
     typeOfWork = models.ManyToManyField(PropertyTypeModel)
@@ -70,7 +70,7 @@ class RealEstateAgent(models.Model):
         return f"{self.contractor} - {self.description}"
 
 
-class MortgageBroker(models.Model):
+class MortgageBrokerModel(models.Model):
     contractor = models.ForeignKey(ContractorModel, on_delete=models.CASCADE)
     description = models.TextField()
     financeMinimum = models.IntegerField()
@@ -80,7 +80,7 @@ class MortgageBroker(models.Model):
         return f"{self.contractor} - {self.description}"
 
 
-class RealEstateLaywer(models.Model):
+class RealEstateLaywerModel(models.Model):
     contractor = models.ForeignKey(ContractorModel, on_delete=models.CASCADE)
     description = models.TextField()
     commission = models.JSONField()
@@ -89,7 +89,7 @@ class RealEstateLaywer(models.Model):
         return f"{self.contractor} - {self.description}"
 
 
-class HomeInspector(models.Model):
+class HomeInspectorModel(models.Model):
     contractor = models.ForeignKey(ContractorModel, on_delete=models.CASCADE)
     description = models.TextField()
     commission = models.JSONField()
@@ -98,7 +98,7 @@ class HomeInspector(models.Model):
         return f"{self.contractor} - {self.description}"
 
 
-class Surveyor(models.Model):
+class SurveyorModel(models.Model):
     contractor = models.ForeignKey(ContractorModel, on_delete=models.CASCADE)
     description = models.TextField()
     commission = models.JSONField()
@@ -107,7 +107,7 @@ class Surveyor(models.Model):
         return f"{self.contractor} - {self.description}"
 
 
-class Architect(models.Model):
+class ArchitectModel(models.Model):
     contractor = models.ForeignKey(ContractorModel, on_delete=models.CASCADE)
     description = models.TextField()
     commission = models.JSONField()
