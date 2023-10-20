@@ -8,5 +8,9 @@ router.register(r"contractors", ContractorViewSet, basename="contractors")
 
 urlpatterns = [
     path("", include(router.urls)),
-    path('saveUserConfiguration/<int:userID>/', views.saveUserConfiguration, name='saveUserConfiguration')
+    path(
+        "saveUserConfiguration/<int:userID>/",
+        views.saveUserConfiguration,
+        name="saveUserConfiguration",
+    ),
 ]
