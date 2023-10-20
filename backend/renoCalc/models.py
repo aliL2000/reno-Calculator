@@ -14,7 +14,7 @@ class UserModel(models.Model):
     def clean(self):
         super().clean()
         if self.email is None and self.phoneNumber is None:
-            raise ValidationError("At least one of field1 or field2 must have a value.")
+            raise ValidationError("At least one of email or phone Number must have a value.")
 
         def __str__(self):
             return f"{self.name} - {self.email}"

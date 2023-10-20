@@ -1,4 +1,5 @@
-from .models import ContractorModel,UserHomeAndRenovationConfigurationModel
+import json
+from .models import UserModel,ContractorModel,UserHomeAndRenovationConfigurationModel
 from .serializers import ContractorModelSerializer
 from rest_framework import viewsets
 from django.views.decorators.http import require_POST
@@ -6,7 +7,12 @@ from django.http import HttpResponse
 
 @require_POST
 def my_view(request,userID):
-    
+    homeAndRenoJSON = json.loads(request.body)
+    userObject = UserModel.objects.get(pk=userID)
+    UserHomeAndRenovationConfigurationModel.objects.create(
+        user = userObject,
+        uniqueConfiguration = homeAndRenoJSON
+    )
     
     return HttpResponse("This is a POST request.")
 
