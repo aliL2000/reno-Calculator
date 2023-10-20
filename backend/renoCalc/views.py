@@ -7,6 +7,7 @@ from django.http import HttpResponse
 
 @require_POST
 def my_view(request,userID):
+    #Load JSON and UserID and save to the model
     homeAndRenoJSON = json.loads(request.body)
     userObject = UserModel.objects.get(pk=userID)
     UserConfigInstance = UserHomeAndRenovationConfigurationModel.objects.create(
@@ -15,6 +16,7 @@ def my_view(request,userID):
     )
     UserConfigInstance.full_clean()
     UserConfigInstance.save()
+    #TODO:Send an email to us with the JSON body
     return HttpResponse("This is a POST request.")
 
 # @require_http_methods(["GET", "POST"])
