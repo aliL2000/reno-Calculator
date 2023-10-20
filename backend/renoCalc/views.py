@@ -9,11 +9,12 @@ from django.http import HttpResponse
 def my_view(request,userID):
     homeAndRenoJSON = json.loads(request.body)
     userObject = UserModel.objects.get(pk=userID)
-    UserHomeAndRenovationConfigurationModel.objects.create(
+    UserConfigInstance = UserHomeAndRenovationConfigurationModel.objects.create(
         user = userObject,
         uniqueConfiguration = homeAndRenoJSON
     )
-    
+    UserConfigInstance.full_clean()
+    UserConfigInstance.save()
     return HttpResponse("This is a POST request.")
 
 # @require_http_methods(["GET", "POST"])
