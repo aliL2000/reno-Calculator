@@ -51,6 +51,18 @@ class UserTestCases(TestCase):
         # Verify that a User exists with only their phone number provided
         self.assertTrue(UserModel.objects.filter(first_name="John").exists())
 
+    def testUserCreationWithNoEmailOrUsernameProvided(self):
+        # Verify that a Validation Error has occured when a User with NO fields is attempted to be created
+        with self.assertRaises(ValidationError):
+            userWithNoFields = UserModel.objects.create(
+                first_name="John",
+                last_name="Doe",
+                phoneNumber="1234567890",
+                address="123 Main St",
+                password="jdoe098",
+            )
+            userWithNoFields.full_clean()
+
     def testUserCreationWithNoFieldsProvided(self):
         # Verify that a Validation Error has occured when a User with NO fields is attempted to be created
         with self.assertRaises(ValidationError):
