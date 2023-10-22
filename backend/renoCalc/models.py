@@ -12,13 +12,8 @@ class UserModel(AbstractUser):
     phoneNumber = models.CharField(max_length=15, blank=True, null=True)
     address = models.CharField(max_length=100, blank=True, null=True)
 
-    def clean(self):
-        super().clean()
-        if self.email is None and self.username is None:
-            raise ValidationError("At least one of email or username must have a value.")
-
-        def __str__(self):
-            return f"{self.firstname} - {self.email}"
+    def __str__(self):
+        return f"{self.first_name} - {self.email}"
 
 
 class UserHomeAndRenovationConfigurationModel(models.Model):

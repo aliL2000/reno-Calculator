@@ -10,8 +10,8 @@ class MyViewTestCase(TestCase):
 
         call_command("flush", interactive=False)
         self.userWithAllFields = UserModel.objects.create(
-            firstname="John",
-            lastname="Doe",
+            first_name="John",
+            last_name="Doe",
             email="johndoe@example.com",
             phoneNumber="1234567890",
             address="123 Main St",
@@ -21,7 +21,7 @@ class MyViewTestCase(TestCase):
 
         self.userWithAllFields.full_clean()
         self.userWithAllFields.save()
-        self.assertTrue(UserModel.objects.filter(firstname="John").exists())
+        self.assertTrue(UserModel.objects.filter(first_name="John").exists())
 
     def test_my_view(self):
         url = reverse(
