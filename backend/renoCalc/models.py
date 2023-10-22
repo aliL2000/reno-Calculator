@@ -6,7 +6,7 @@ from django.db.models.signals import pre_save
 from django.contrib.auth.models import AbstractUser
 
 
-class UserModel(models.Model):
+class UserModel(AbstractUser):
     firstName = models.CharField(max_length=100)
     lastName = models.CharField(max_length=100)
     username = models.CharField(max_length=100, unique=True)
