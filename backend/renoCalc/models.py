@@ -7,10 +7,8 @@ from django.contrib.auth.models import AbstractUser
 
 
 class UserModel(AbstractUser):
-    firstName = models.CharField(max_length=100)
-    lastName = models.CharField(max_length=100)
-    username = models.CharField(max_length=100, unique=True)
-    email = models.EmailField(unique=True)
+    username = models.CharField(max_length=100, unique=True, blank=True, null=True)
+    email = models.EmailField(unique=True, blank=True, null=True)
     phoneNumber = models.CharField(max_length=15, blank=True, null=True)
     address = models.CharField(max_length=100, blank=True, null=True)
 

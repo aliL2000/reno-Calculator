@@ -21,7 +21,7 @@ class MyViewTestCase(TestCase):
 
         self.userWithAllFields.full_clean()
         self.userWithAllFields.save()
-        self.assertTrue(UserModel.objects.filter(name="John Doe").exists())
+        self.assertTrue(UserModel.objects.filter(firstname="John").exists())
 
     def test_my_view(self):
         url = reverse(
