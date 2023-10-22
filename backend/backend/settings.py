@@ -78,9 +78,9 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'renocalcdb',          # Name of your PostgreSQL database
-        'USER': 'testing',        # Your PostgreSQL username
-        'PASSWORD': '1234',  # Your PostgreSQL password
+        'NAME': 'renoCalcDB',          # Name of your PostgreSQL database
+        'USER': 'postgresReno',        # Your PostgreSQL username
+        'PASSWORD': 'postgresReno',  # Your PostgreSQL password
         'HOST': 'localhost',       # Set the host to the PostgreSQL server
         'PORT': '',  
     }
