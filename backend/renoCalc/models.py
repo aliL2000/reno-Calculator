@@ -6,19 +6,21 @@ from django.db.models.signals import pre_save
 from django.contrib.auth.models import AbstractUser
 
 
-class UserModel(AbstractUser):
-    name = models.CharField(max_length=100)
-    email = models.CharField(max_length=100, blank=True, null=True)
+class UserModel(models.Model):
+    firstName = models.CharField(max_length=100)
+    lastName = models.CharField(max_length=100)
+    username = models.CharField(max_length=100, unique=True)
+    email = models.EmailField(unique=True)
     phoneNumber = models.CharField(max_length=15, blank=True, null=True)
     address = models.CharField(max_length=100, blank=True, null=True)
 
     def clean(self):
         super().clean()
-        if self.email is None and self.phoneNumber is None:
-            raise ValidationError("At least one of email or phone Number must have a value.")
+        if self.email is None and self.username is None:
+            raise ValidationError("At least one of email or username must have a value.")
 
         def __str__(self):
-            return f"{self.name} - {self.email}"
+            return f"{self.firstname} - {self.email}"
 
 
 class UserHomeAndRenovationConfigurationModel(models.Model):

@@ -14,6 +14,8 @@ class MyViewTestCase(TestCase):
             email="johndoe@example.com",
             phoneNumber="1234567890",
             address="123 Main St",
+            password="jdoe098",
+            username=""
         )
         self.userWithAllFields.full_clean()
         self.userWithAllFields.save()
