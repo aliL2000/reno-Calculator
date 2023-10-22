@@ -6,6 +6,10 @@ from renoCalc.models import (
     PropertyTypeModel,
     RegionModel,
     MortgageBrokerModel,
+    RealEstateLaywerModel,
+    HomeInspectorModel,
+    SurveyorModel,
+    ArchitectModel,
 )
 
 
@@ -106,8 +110,40 @@ class Command(BaseCommand):
             },
         )
 
-        #CREATEREALESTATELAYWER
-        #CREATEHOMEINSPECTOR
-        #CREATESURVEYOR
-        #CREATEARCHITECT
+        # CREATEREALESTATELAYWER
+        RealEstateLaywerModel.objects.create(
+            contractor=ct1,
+            description="test",
+            commission={
+                "Home": {"lendingFees": 1, "interest": 5},
+                "Construction": {"lendingFees": 2, "interest": 10},
+            },
+        )
+        RealEstateLaywerModel.objects.create(
+            contractor=ct2,
+            description="test",
+            commission={
+                "Home": {"lendingFees": 1, "interest": 5},
+                "Construction": {"lendingFees": 2, "interest": 10},
+            },
+        )
+        # TODO:CREATEHOMEINSPECTOR
+        HomeInspectorModel.objects.create(
+            contractor=ct3,
+            description="test",
+            commission={
+                "Home": {"lendingFees": 1, "interest": 5},
+                "Construction": {"lendingFees": 2, "interest": 10},
+            },
+        )
+        HomeInspectorModel.objects.create(
+            contractor=ct2,
+            description="test",
+            commission={
+                "Home": {"lendingFees": 1, "interest": 5},
+                "Construction": {"lendingFees": 2, "interest": 10},
+            },
+        )
+        # TODO:CREATESURVEYOR
+        # TODO:CREATEARCHITECT
         self.stdout.write(self.style.SUCCESS("Database populated successfully!"))

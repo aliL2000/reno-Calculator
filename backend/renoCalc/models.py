@@ -62,7 +62,7 @@ class RegionModel(models.Model):
 
 
 class RealEstateAgentModel(models.Model):
-    contractor = models.ForeignKey(ContractorModel, on_delete=models.CASCADE)
+    contractor = models.OneToOneField(ContractorModel, on_delete=models.CASCADE)
     description = models.TextField()
     typeOfWork = models.ManyToManyField(PropertyTypeModel)
     regions = models.ManyToManyField(RegionModel)
@@ -73,7 +73,7 @@ class RealEstateAgentModel(models.Model):
 
 
 class MortgageBrokerModel(models.Model):
-    contractor = models.ForeignKey(ContractorModel, on_delete=models.CASCADE)
+    contractor = models.OneToOneField(ContractorModel, on_delete=models.CASCADE)
     description = models.TextField()
     financeMinimum = models.IntegerField()
     commission = models.JSONField()
@@ -83,7 +83,7 @@ class MortgageBrokerModel(models.Model):
 
 
 class RealEstateLaywerModel(models.Model):
-    contractor = models.ForeignKey(ContractorModel, on_delete=models.CASCADE)
+    contractor = models.OneToOneField(ContractorModel, on_delete=models.CASCADE)
     description = models.TextField()
     commission = models.JSONField()
 
@@ -92,7 +92,7 @@ class RealEstateLaywerModel(models.Model):
 
 
 class HomeInspectorModel(models.Model):
-    contractor = models.ForeignKey(ContractorModel, on_delete=models.CASCADE)
+    contractor = models.OneToOneField(ContractorModel, on_delete=models.CASCADE)
     description = models.TextField()
     commission = models.JSONField()
 
@@ -101,7 +101,7 @@ class HomeInspectorModel(models.Model):
 
 
 class SurveyorModel(models.Model):
-    contractor = models.ForeignKey(ContractorModel, on_delete=models.CASCADE)
+    contractor = models.OneToOneField(ContractorModel, on_delete=models.CASCADE)
     description = models.TextField()
     commission = models.JSONField()
 
@@ -110,7 +110,7 @@ class SurveyorModel(models.Model):
 
 
 class ArchitectModel(models.Model):
-    contractor = models.ForeignKey(ContractorModel, on_delete=models.CASCADE)
+    contractor = models.OneToOneField(ContractorModel, on_delete=models.CASCADE)
     description = models.TextField()
     commission = models.JSONField()
 
@@ -119,7 +119,7 @@ class ArchitectModel(models.Model):
 
 
 class LaundryAppliances(models.Model):
-    contractor = models.ForeignKey(ContractorModel, on_delete=models.CASCADE)
+    contractor = models.OneToOneField(ContractorModel, on_delete=models.CASCADE)
     service = models.CharField(max_length=100)
     choice = models.CharField(max_length=100)
     cost = models.DecimalField(max_digits=10, decimal_places=2)
