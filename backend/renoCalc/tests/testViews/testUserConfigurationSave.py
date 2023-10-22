@@ -11,13 +11,14 @@ class MyViewTestCase(TestCase):
         call_command("flush", interactive=False)
         self.userWithAllFields = UserModel.objects.create(
             firstname="John",
-            lastname="Doe"
+            lastname="Doe",
             email="johndoe@example.com",
             phoneNumber="1234567890",
             address="123 Main St",
             password="jdoe098",
-            username="jdoemain"
+            username="jdoemain",
         )
+
         self.userWithAllFields.full_clean()
         self.userWithAllFields.save()
         self.assertTrue(UserModel.objects.filter(name="John Doe").exists())
