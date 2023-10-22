@@ -144,6 +144,46 @@ class Command(BaseCommand):
                 "Construction": {"lendingFees": 2, "interest": 10},
             },
         )
+        HomeInspectorModel.objects.create(
+            contractor=ct1,
+            description="test",
+            commission={
+                "Home": {"lendingFees": 1, "interest": 5},
+                "Construction": {"lendingFees": 2, "interest": 10},
+            },
+        )
         # TODO:CREATESURVEYOR
+        SurveyorModel.objects.create(
+            contractor=ct1,
+            description="test",
+            commission={
+                "Home": {"lendingFees": 1, "interest": 5},
+                "Construction": {"lendingFees": 2, "interest": 10},
+            },
+        )
+        SurveyorModel.objects.create(
+            contractor=ct2,
+            description="test",
+            commission={
+                "Home": {"lendingFees": 1, "interest": 5},
+                "Construction": {"lendingFees": 2, "interest": 10},
+            },
+        )
         # TODO:CREATEARCHITECT
+        ArchitectModel.objects.create(
+            contractor=ct3,
+            description="test",
+            commission={
+                "Home": {"lendingFees": 1, "interest": 5},
+                "Construction": {"lendingFees": 2, "interest": 10},
+            },
+        )
+        ArchitectModel.objects.create(
+            contractor=ct1,
+            description="test",
+            commission={
+                "Home": {"lendingFees": 1, "interest": 5},
+                "Construction": {"lendingFees": 2, "interest": 10},
+            },
+        )
         self.stdout.write(self.style.SUCCESS("Database populated successfully!"))
