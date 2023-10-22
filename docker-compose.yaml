@@ -31,7 +31,7 @@ services:
       - ./postgres/database:/var/lib/postgresql/data
     environment:
       - POSTGRES_DB=renoCalcDB
-      - POSTGRES_USER=testing
-      - POSTGRES_PASSWORD=1234
+      - POSTGRES_USER=postgresReno
+      - POSTGRES_PASSWORD=postgresReno
     ports:
       - "5432:5432"

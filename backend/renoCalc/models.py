@@ -3,21 +3,23 @@ from django.db import models
 from django.core.exceptions import ValidationError
 from django.dispatch import receiver
 from django.db.models.signals import pre_save
+from django.contrib.auth.models import AbstractUser
 
 
-class UserModel(models.Model):
-    name = models.CharField(max_length=100)
-    email = models.CharField(max_length=100, blank=True, null=True)
+class UserModel(AbstractUser):
+    username = models.CharField(max_length=100, unique=True, blank=True, null=True)
+    email = models.EmailField(unique=True, blank=True, null=True)
     phoneNumber = models.CharField(max_length=15, blank=True, null=True)
     address = models.CharField(max_length=100, blank=True, null=True)
 
-    def clean(self):
-        super().clean()
-        if self.email is None and self.phoneNumber is None:
-            raise ValidationError("At least one of email or phone Number must have a value.")
+    def save(self, *args, **kwargs):
+        if not self.username and not self.email:
+            raise ValidationError("At least one of username or email must have a value.")
 
-        def __str__(self):
-            return f"{self.name} - {self.email}"
+        super(UserModel, self).save(*args, **kwargs)
+
+    def __str__(self):
+        return f"{self.first_name} - {self.email}"
 
 
 class UserHomeAndRenovationConfigurationModel(models.Model):
