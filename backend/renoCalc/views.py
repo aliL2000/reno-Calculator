@@ -20,13 +20,6 @@ def saveUserConfiguration(request, userID):
     return HttpResponse("This is a POST request.")
 
 
-# @require_http_methods(["GET", "POST"])
-# def my_view(request):
-#     # I can assume now that only GET or POST requests make it this far
-#     # ...
-#     pass
-
-
 class ContractorViewSet(viewsets.ModelViewSet):
     queryset = ContractorModel.objects.all()
     serializer_class = ContractorModelSerializer

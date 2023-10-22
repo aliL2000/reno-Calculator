@@ -3,9 +3,10 @@ from django.db import models
 from django.core.exceptions import ValidationError
 from django.dispatch import receiver
 from django.db.models.signals import pre_save
+from django.contrib.auth.models import AbstractUser
 
 
-class UserModel(models.Model):
+class UserModel(AbstractUser):
     name = models.CharField(max_length=100)
     email = models.CharField(max_length=100, blank=True, null=True)
     phoneNumber = models.CharField(max_length=15, blank=True, null=True)
