@@ -1,5 +1,7 @@
 import Head from 'next/head';
 import styles from '../styles/Home.module.css';
+import { Button } from '@mui/material';
+import Link from 'next/link';
 
 export default function Home() {
   return (
@@ -11,41 +13,24 @@ export default function Home() {
 
       <main>
         <h1 className={styles.title}>
-          Learn <a href="https://nextjs.org">Next.js!</a>
+           Learn Next.js!
         </h1>
 
         <p className={styles.description}>
-          Learn by editing <code>pages/index.js</code>
+          Learn by editing 
         </p>
 
         <div className={styles.grid}>
-          <a href="https://nextjs.org/docs" className={styles.card}>
-            <h3>Documentation &rarr;</h3>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
+          <Link href="/home/options" className={styles.card}>
+            <h3>Home &rarr;</h3>
+            <p>I want to buy a home</p>
+          </Link>
 
-          <a href="https://nextjs.org/learn" className={styles.card}>
-            <h3>Learn &rarr;</h3>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
-          </a>
+          <Link href="/renovation/options" className={styles.card}>
+            <h3>Renovation &rarr;</h3>
+            <p>I want to renovate my home</p>
+          </Link>
 
-          <a
-            href="https://github.com/vercel/next.js/tree/canary/examples"
-            className={styles.card}
-          >
-            <h3>Examples &rarr;</h3>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
-          </a>
-
-          <a
-            href="https://vercel.com/import?filter=next.js&utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-          >
-            <h3>Deploy &rarr;</h3>
-            <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
         </div>
       </main>
 
