@@ -1,18 +1,18 @@
 version: "3.11"
 
 services:
-  # rosen_frontend:
-  #   container_name: docker-rosen-front-c
-  #   image: docker-rosen-front-i
-  #   build:
-  #     context: .
-  #     dockerfile: rosen_frontend/Dockerfile
-  #   volumes:
-  #     - ./rosen_frontend:/src
-  #     - /src/node_modules
-  #     - /src/.next
-  #   ports:
-  #     - 3000:3000
+  frontend:
+    container_name: docker-frontend-cname
+    image: docker-frontend-image
+    build:
+      context: .
+      dockerfile: frontend/Dockerfile
+    volumes:
+      - ./frontend:/src
+      - /src/node_modules
+      - /src/.next
+    ports:
+      - 3000:3000
   backend:
     container_name: docker-backend-cname
     image: docker-backend-image
