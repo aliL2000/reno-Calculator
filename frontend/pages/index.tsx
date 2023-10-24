@@ -48,9 +48,10 @@ export default function Home() {
           </div>
         </section>
 
+        <section className="business-explanation"></section>
         <div className={styles.grid}>
           <h3 className={styles.subtitle}>
-            Get free project cost information delievered to your mailbox.
+            How it works
           </h3>
           <div className={styles.grid}>
             <img
