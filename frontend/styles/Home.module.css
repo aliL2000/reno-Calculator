@@ -45,8 +45,12 @@
   align-items: center;
   justify-content: space-around;
   flex-wrap: nowrap;
-  text-align:center;
+  text-align: center;
   max-width: 800px;
+}
+
+.grid p {
+  text-align: left;
 }
 
 .card {
@@ -59,9 +63,7 @@
   text-decoration: none;
   border: 1px solid #eaeaea;
   border-radius: 10px;
-  transition:
-    color 0.15s ease,
-    border-color 0.15s ease;
+  transition: color 0.15s ease, border-color 0.15s ease;
 }
 
 .card:hover,
@@ -81,6 +83,7 @@
   font-size: 1.25rem;
   line-height: 1.5;
   color: #616161;
+  text-align: center;
 }
 
 .logo {
@@ -88,17 +91,15 @@
 }
 
 .costScreenshot {
-  height:5rem;
+  height: 5rem;
   margin-left: 1rem;
 }
 
 .subtitle {
   font-size: 1.5rem;
-  text-align:left;
-  padding:1.5rem 1.5rem 1.5rem 0rem;
+  text-align: left;
+  padding: 1.5rem 1.5rem 1.5rem 0rem;
 }
-
-
 
 @media (max-width: 600px) {
   .grid {

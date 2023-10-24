@@ -19,32 +19,34 @@ export default function Home() {
           <div className={styles.grid}>
             <Link href="/home/options" className={styles.card}>
               <h3>BUY</h3>
-              <p>my home</p>
+              <p className={styles.cardDescription}>my home</p>
             </Link>
             <Link href="/renovation/options" className={styles.card}>
               <h3>RENOVATE</h3>
-              <p>my home</p>
+              <p className={styles.cardDescription}>my home</p>
             </Link>
           </div>
         </section>
 
-        <div>
-          <h3 className={styles.subtitle}>
-            Knowledge is priceless - so our renovation cost pricing is free.
-          </h3>
-          <div className={styles.grid}>
-            <p>
-              Always know what to expect from a home renovation with our cost
-              guides. From materials to labour, we have the data-backed info you
-              need as a homeowner to start with confidence.
-            </p>
-            <img
-              src="/form.png"
-              alt="Cost Estimation Image"
-              className={styles.costScreenshot}
-            />
+        <section className="price-explanation">
+          <div>
+            <h3 className={styles.subtitle}>
+              Knowledge is priceless - so our renovation cost pricing is free.
+            </h3>
+            <div className={styles.grid}>
+              <p>
+                Always know what to expect from a home renovation with our cost
+                guides. From materials to labour, we have the data-backed info
+                you need as a homeowner to start with confidence.
+              </p>
+              <img
+                src="/form.png"
+                alt="Cost Estimation Image"
+                className={styles.costScreenshot}
+              />
+            </div>
           </div>
-        </div>
+        </section>
 
         <div className={styles.grid}>
           <h3 className={styles.subtitle}>
