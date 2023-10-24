@@ -41,8 +41,9 @@
 .grid {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-around;
   flex-wrap: wrap;
+  text-align:center;
 
   max-width: 800px;
   margin-top: 3rem;
@@ -50,9 +51,9 @@
 
 .card {
   margin: 1rem;
-  flex-basis: 45%;
+  flex-basis: 25%;
   padding: 1.5rem;
-  text-align: left;
+  text-align: center;
   color: inherit;
   text-decoration: none;
   border: 1px solid #eaeaea;
@@ -70,7 +71,7 @@
 }
 
 .card h3 {
-  margin: 0 0 1rem 0;
+  margin: 1rem 0 1rem 0;
   font-size: 1.5rem;
 }
 
@@ -82,6 +83,10 @@
 
 .logo {
   height: 1em;
+}
+
+.subtitle {
+  font-size: 1.5rem;
 }
 
 @media (max-width: 600px) {
