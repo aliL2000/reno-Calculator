@@ -12,53 +12,52 @@ export default function Home() {
       </Head>
 
       <main>
-        <h1 className={styles.title}>How much will my Home Renovation cost?</h1>
+        <h1 className={styles.title}>Reno-Calculator</h1>
 
-        <p className={styles.description}>Select your options below</p>
+        <section className="user-inputting">
+          <p className={styles.description}>I want to:</p>
+          <div className={styles.grid}>
+            <Link href="/home/options" className={styles.card}>
+              <h3>BUY</h3>
+              <p>my home</p>
+            </Link>
+            <Link href="/renovation/options" className={styles.card}>
+              <h3>RENOVATE</h3>
+              <p>my home</p>
+            </Link>
+          </div>
+        </section>
+
+        <div>
+          <h3 className={styles.subtitle}>
+            Knowledge is priceless - so our renovation cost pricing is free.
+          </h3>
+          <div className={styles.grid}>
+            <p>
+              Always know what to expect from a home renovation with our cost
+              guides. From materials to labour, we have the data-backed info you
+              need as a homeowner to start with confidence.
+            </p>
+            <img
+              src="/form.png"
+              alt="Cost Estimation Image"
+              className={styles.costScreenshot}
+            />
+          </div>
+        </div>
 
         <div className={styles.grid}>
-          <Link href="/home/options" className={styles.card}>
-            <h3>Full Home</h3>
-          </Link>
-          <Link href="/renovation/options" className={styles.card}>
-            <h3>Bathroom</h3>
-          </Link>
-          <Link href="/renovation/options" className={styles.card}>
-            <h3>Kitchen</h3>
-          </Link>
-          <Link href="/renovation/options" className={styles.card}>
-            <h3>Basement</h3>
-          </Link>
-          <Link href="/renovation/options" className={styles.card}>
-            <h3>Add 2nd Floor</h3>
-          </Link>
-          <Link href="/renovation/options" className={styles.card}>
-            <h3>Rear Extension</h3>
-          </Link>
-          <Link href="/renovation/options" className={styles.card}>
-            <h3>Carport Garage</h3>
-          </Link>
-          <Link href="/renovation/options" className={styles.card}>
-            <h3>Exterior</h3>
-          </Link>
-        </div>
-
-        <div>
-          <h3 className={styles.subtitle}>Knowledge is priceless - so our renovation cost pricing is free.</h3>
+          <h3 className={styles.subtitle}>
+            Get free project cost information delievered to your mailbox.
+          </h3>
           <div className={styles.grid}>
-            <p>Always know what to expect from a home renovation with our cost guides. From materials to labour, we have the data-backed info you need as a homeowner to start with confidence.</p>
-            <img src="/vercel.svg" alt="Cost Estimation Image" className={styles.logo} />
+            <img
+              src="/vercel.svg"
+              alt="Cost Estimation Image"
+              className={styles.logo}
+            />
           </div>
         </div>
-
-        <div>
-          <h3 className={styles.subtitle}>Get free project cost information delievered to your mailbox.</h3>
-          <div className={styles.grid}>
-            <p>Always know what to expect from a home renovation with our cost guides. From materials to labour, we have the data-backed info you need as a homeowner to start with confidence.</p>
-            <img src="/vercel.svg" alt="Cost Estimation Image" className={styles.logo} />
-          </div>
-        </div>
-
       </main>
 
       <footer>
