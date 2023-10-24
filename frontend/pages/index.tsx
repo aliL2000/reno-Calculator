@@ -1,48 +1,80 @@
-import Head from 'next/head';
-import styles from '../styles/Home.module.css';
-import { Button } from '@mui/material';
-import Link from 'next/link';
+import Head from "next/head";
+import styles from "../styles/Home.module.css";
+import { Button } from "@mui/material";
+import Link from "next/link";
 
 export default function Home() {
   return (
     <div className={styles.container}>
       <Head>
-        <title>Create Next App</title>
+        <title>Reno-Calculator</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
       <main>
-        <h1 className={styles.title}>
-           Learn Next.js!
-        </h1>
+        <h1 className={styles.title}>Reno-Calculator</h1>
 
-        <p className={styles.description}>
-          Learn by editing 
-        </p>
+        <section className="user-inputting">
+          <p className={styles.description}>I want to:</p>
+          <div className={styles.grid}>
+            <Link href="/home/options" className={styles.card}>
+              <h3>BUY</h3>
+              <p className={styles.cardDescription}>my home</p>
+            </Link>
+            <Link href="/renovation/options" className={styles.card}>
+              <h3>RENOVATE</h3>
+              <p className={styles.cardDescription}>my home</p>
+            </Link>
+          </div>
+        </section>
 
-        <div className={styles.grid}>
-          <Link href="/home/options" className={styles.card}>
-            <h3>Home &rarr;</h3>
-            <p>I want to buy a home</p>
-          </Link>
+        <section className="price-explanation">
+          <div>
+            <h3 className={styles.subtitle}>
+              Knowledge is priceless - so our renovation cost pricing is free.
+            </h3>
+            <div className={styles.grid}>
+              <p>
+                Always know what to expect from a home renovation with our cost
+                guides. From materials to labour, we have the data-backed info
+                you need as a homeowner to start with confidence.
+              </p>
+              <img
+                src="/form.png"
+                alt="Cost Estimation Image"
+                className={styles.costScreenshot}
+              />
+            </div>
+          </div>
+        </section>
 
-          <Link href="/renovation/options" className={styles.card}>
-            <h3>Renovation &rarr;</h3>
-            <p>I want to renovate my home</p>
-          </Link>
-
-        </div>
+        <section className="business-explanation">
+          <h3 className={styles.subtitle}>How it works</h3>
+          <div className={styles.grid}>
+            <div className={styles.grid}>
+              <p className={styles.numbering}>1.</p>
+              <p>Tell us what your home needs</p>
+              <p className={styles.numbering}>2.</p>
+              <p>We will ask you to make measurements</p>
+              <p className={styles.numbering}>3.</p>
+              <p>Get instant quotes from real, top-rated, contractors</p>
+            </div>
+          </div>
+          <Button
+            href="/learn/explained"
+            variant="outlined"
+            size="small"
+            sx={{
+              margin: 1,
+              color:"black"
+            }}
+          >
+            Learn More
+          </Button>
+        </section>
       </main>
 
       <footer>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <img src="/vercel.svg" alt="Vercel" className={styles.logo} />
-        </a>
       </footer>
 
       <style jsx>{`
@@ -77,15 +109,8 @@ export default function Home() {
           border-radius: 5px;
           padding: 0.75rem;
           font-size: 1.1rem;
-          font-family:
-            Menlo,
-            Monaco,
-            Lucida Console,
-            Liberation Mono,
-            DejaVu Sans Mono,
-            Bitstream Vera Sans Mono,
-            Courier New,
-            monospace;
+          font-family: Menlo, Monaco, Lucida Console, Liberation Mono,
+            DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace;
         }
       `}</style>
 
@@ -94,17 +119,8 @@ export default function Home() {
         body {
           padding: 0;
           margin: 0;
-          font-family:
-            -apple-system,
-            BlinkMacSystemFont,
-            Segoe UI,
-            Roboto,
-            Oxygen,
-            Ubuntu,
-            Cantarell,
-            Fira Sans,
-            Droid Sans,
-            Helvetica Neue,
+          font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
+            Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue,
             sans-serif;
         }
         * {
