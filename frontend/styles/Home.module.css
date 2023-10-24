@@ -90,15 +90,26 @@
   height: 1em;
 }
 
+.sectionTitle {
+ text-align: left;
+}
+
 .costScreenshot {
   height: 10rem;
   margin-left: 1rem;
+}
+
+.numbering {
+  font-weight: bold;
+  padding-bottom: 1.3em;
+  padding-right: 1em;
 }
 
 .subtitle {
   font-size: 1.5rem;
   text-align: left;
   padding: 1.5rem 1.5rem 1.5rem 0rem;
+  margin-left: 0;
 }
 
 @media (max-width: 600px) {

@@ -48,19 +48,30 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="business-explanation"></section>
-        <div className={styles.grid}>
-          <h3 className={styles.subtitle}>
-            How it works
-          </h3>
+        <section className="business-explanation">
+          <h3 className={styles.subtitle}>How it works</h3>
           <div className={styles.grid}>
-            <img
-              src="/vercel.svg"
-              alt="Cost Estimation Image"
-              className={styles.logo}
-            />
+            <div className={styles.grid}>
+              <p className={styles.numbering}>1.</p>
+              <p>Tell us what your home needs</p>
+              <p className={styles.numbering}>2.</p>
+              <p>We will ask you to make measurements</p>
+              <p className={styles.numbering}>3.</p>
+              <p>Get instant quotes from real, top-rated, contractors</p>
+            </div>
           </div>
-        </div>
+          <Button
+            href="/learn/explained"
+            variant="outlined"
+            size="small"
+            sx={{
+              margin: 1,
+              color:"black"
+            }}
+          >
+            Learn More
+          </Button>
+        </section>
       </main>
 
       <footer>
