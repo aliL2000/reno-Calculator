@@ -2,6 +2,7 @@ import Head from "next/head";
 import styles from "../styles/Home.module.css";
 import { Button } from "@mui/material";
 import Link from "next/link";
+import Layout from "../components/layout";
 
 export default function Home() {
   return (
@@ -11,6 +12,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
+      <Layout>
       <main>
         <h1 className={styles.title}>Reno-Calculator</h1>
 
@@ -73,6 +75,7 @@ export default function Home() {
           </Button>
         </section>
       </main>
+      </Layout>
 
       <style jsx>{`
         main {
