@@ -6,4 +6,4 @@ This project addresses the common inefficiencies faced by clients and contractor
 Say goodbye to the hassles of renovation project management and hello to efficiency and transparency.
 
 ### Getting Started
-Conforming to best practices, the backend and frontend are in seperate directories and maintain a level of indepence from each other. To get started on the **frontend**, navigate [here](frontend/README.md). To get started on the [backend](backend/README.md), click here.
+Conforming to best practices, the backend and frontend are in seperate directories and maintain a level of indepence from each other. To get started on the **frontend**, navigate [here](frontend/README.md). To get started on the **backend**, click [here](backend/README.md).
