@@ -28,7 +28,6 @@ class Command(BaseCommand):
             phoneNumber="1234567890",
             address="123 Main St",
             password="jdoe098",
-            username="jdoemain",
         )
         UserModel.objects.create(
             first_name="John",
@@ -44,7 +43,7 @@ class Command(BaseCommand):
             phoneNumber="1234567890",
             address="123 Main St",
             password="jdoe098",
-            username="jdoemain2",
+            email="johndoe3@example.com",
         )
 
         # CREATE CONTRACTORS
