@@ -50,30 +50,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="business-explanation">
-          <h3 className={styles.subtitle}>How it works</h3>
-          <div className={styles.grid}>
-            <div className={styles.grid}>
-              <p className={styles.numbering}>1.</p>
-              <p>Tell us what your home needs</p>
-              <p className={styles.numbering}>2.</p>
-              <p>We will ask you to make measurements</p>
-              <p className={styles.numbering}>3.</p>
-              <p>Get instant quotes from real, top-rated, contractors</p>
-            </div>
-          </div>
-          <Button
-            href="/learn/explained"
-            variant="outlined"
-            size="small"
-            sx={{
-              margin: 1,
-              color:"black"
-            }}
-          >
-            Learn More
-          </Button>
-        </section>
+
       </main>
       </Layout>
 
