@@ -12,6 +12,9 @@ from renoCalc.models import (
     ArchitectModel,
 )
 
+#TO RUN:
+#python manage.py populate_db
+
 
 class Command(BaseCommand):
     help = "Populate the database with sample data"
