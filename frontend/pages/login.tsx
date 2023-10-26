@@ -1,19 +1,38 @@
-import React from 'react';
-import Container from '@mui/material/Container';
-import TextField from '@mui/material/TextField';
-import Button from '@mui/material/Button';
+import React, { useState } from "react";
+import Container from "@mui/material/Container";
+import TextField from "@mui/material/TextField";
+import Button from "@mui/material/Button";
+import axios from 'axios';
 
-const Login: React.FC = () => {
+const Login = () => {
+  const [formData, setFormData] = useState({ username: '', password: '' });
+  
+  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();    
+    try {
+      const response = await axios.post('/api/login/', formData); 
+      if (response.status === 200) {
+        console.log('Login successful');
+      } else {
+        console.log('Login failed');
+      }
+    } catch (error) {
+      console.error('An error occurred:', error);
+    }
+  };
+
   return (
     <Container maxWidth="sm">
       <div>
         <h2>Login</h2>
-        <form>
+        <form onSubmit={onSubmit}>
           <TextField
-            label="Username or Email"
+            label="Username"
             variant="outlined"
             fullWidth
             margin="normal"
+            value={formData.username}
+            onChange={(e) => setFormData({ ...formData, username: e.target.value })}
           />
           <TextField
             label="Password"
@@ -21,8 +40,10 @@ const Login: React.FC = () => {
             variant="outlined"
             fullWidth
             margin="normal"
+            value={formData.password}
+            onChange={(e) => setFormData({ ...formData, password: e.target.value })}
           />
-          <Button variant="contained" color="primary" fullWidth>
+          <Button type="submit" variant="contained" color="primary" fullWidth>
             Login
           </Button>
         </form>
