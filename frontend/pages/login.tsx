@@ -1,17 +1,34 @@
-import Link from "next/link";
-import Head from "next/head";
+import React from 'react';
+import Container from '@mui/material/Container';
+import TextField from '@mui/material/TextField';
+import Button from '@mui/material/Button';
 
-export default function login() {
+const Login: React.FC = () => {
   return (
-    <>
-      <Head>
-        <title>Project Estimation Explained</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-      <h1>First Post</h1>
-      <h2>
-        <Link href="/">Back to home</Link>
-      </h2>
-    </>
+    <Container maxWidth="sm">
+      <div>
+        <h2>Login</h2>
+        <form>
+          <TextField
+            label="Username or Email"
+            variant="outlined"
+            fullWidth
+            margin="normal"
+          />
+          <TextField
+            label="Password"
+            type="password"
+            variant="outlined"
+            fullWidth
+            margin="normal"
+          />
+          <Button variant="contained" color="primary" fullWidth>
+            Login
+          </Button>
+        </form>
+      </div>
+    </Container>
   );
-}
+};
+
+export default Login;
