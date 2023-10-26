@@ -1,3 +1,31 @@
+.navbar {
+  width:100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #e6e6e6;
+  padding: 10px 20px;
+}
+
+.logo img {
+  max-width: 100px;
+}
+
+.navLinks {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+}
+
+.navLinks li {
+  font-size: 1rem;
+}
+
+.navLinks a {
+  text-decoration: none;
+}
+
+
 .footer {
   width: 100%;
   height: fit-content;
