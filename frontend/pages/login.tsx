@@ -5,7 +5,7 @@ import Button from "@mui/material/Button";
 import axios from 'axios';
 
 const Login = () => {
-  const [formData, setFormData] = useState({ username: '', password: '' });
+  const [formData, setFormData] = useState({ email: '', password: '' });
   
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -29,12 +29,12 @@ const Login = () => {
         <h2>Login</h2>
         <form onSubmit={onSubmit}>
           <TextField
-            label="Username or Email"
+            label="Email"
             variant="outlined"
             fullWidth
             margin="normal"
-            value={formData.username}
-            onChange={(e) => setFormData({ ...formData, username: e.target.value })}
+            value={formData.email}
+            onChange={(e) => setFormData({ ...formData, email: e.target.value })}
           />
           <TextField
             label="Password"
