@@ -14,8 +14,6 @@ What types of changes does your code introduce?
 ## Checklist:
 
 - [ ] Issue has been created
-- [ ] Every file touched is linted
-- [ ] Every file touched has tests that cover all the funcitonality with green coverage
 - [ ] Documentation is updated (if applicable).
 
 ## Issue
