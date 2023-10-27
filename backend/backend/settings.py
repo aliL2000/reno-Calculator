@@ -27,10 +27,6 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-AUTHENTICATION_BACKENDS = [
-    'renoCalc.backends.EmailBackend'
-]
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -141,6 +137,10 @@ USE_TZ = True
 STATIC_URL = 'static/'
 
 AUTH_USER_MODEL = 'renoCalc.UserModel'
+
+AUTHENTICATION_BACKENDS = [
+    'renoCalc.backends.EmailBackend'
+]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
