@@ -26,6 +26,7 @@ services:
     depends_on:
       - db
   db:
+    container_name: docker-db
     image: postgres
     volumes:
       - ./postgres/database:/var/lib/postgresql/data
