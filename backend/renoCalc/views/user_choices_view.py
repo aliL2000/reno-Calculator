@@ -1,10 +1,7 @@
 import json
-from .models import UserModel, ContractorModel, UserHomeAndRenovationConfigurationModel
-from .serializers import ContractorModelSerializer
-from rest_framework import viewsets
 from django.views.decorators.http import require_POST
 from django.http import HttpResponse
-
+from ..models import UserModel, UserHomeAndRenovationConfigurationModel
 
 @require_POST
 def saveUserConfiguration(request, userID):
@@ -18,8 +15,3 @@ def saveUserConfiguration(request, userID):
     UserConfigInstance.save()
     # TODO:Send an email to us with the JSON body
     return HttpResponse("This is a POST request.")
-
-
-class ContractorViewSet(viewsets.ModelViewSet):
-    queryset = ContractorModel.objects.all()
-    serializer_class = ContractorModelSerializer

@@ -16,7 +16,6 @@ class MyViewTestCase(TestCase):
             phoneNumber="1234567890",
             address="123 Main St",
             password="jdoe098",
-            username="jdoemain",
         )
 
         self.userWithAllFields.full_clean()

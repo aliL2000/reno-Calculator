@@ -12,37 +12,44 @@ from renoCalc.models import (
     ArchitectModel,
 )
 
+#TO RUN:
+#python manage.py populate_db
+
 
 class Command(BaseCommand):
     help = "Populate the database with sample data"
 
     def handle(self, *args, **options):
         # CREATE USERS
-        UserModel.objects.create(
+        user1 = UserModel(
             first_name="John",
             last_name="Doe",
             email="johndoe@example.com",
             phoneNumber="1234567890",
             address="123 Main St",
-            password="jdoe098",
-            username="jdoemain",
         )
-        UserModel.objects.create(
+        user1.set_password("jdoe098")
+        user1.save()
+        user2 = UserModel(
             first_name="John",
             last_name="Doe",
             email="johndoe2@example.com",
             phoneNumber="1234567890",
             address="123 Main St",
-            password="jdoe0981",
+            
         )
-        UserModel.objects.create(
+        user2.set_password("jdoe0981")
+        user2.save()
+        user3 = UserModel(
             first_name="John",
             last_name="Doe",
             phoneNumber="1234567890",
             address="123 Main St",
             password="jdoe098",
-            username="jdoemain2",
+            email="johndoe3@example.com",
         )
+        user3.set_password("jdoe098")
+        user3.save()
 
         # CREATE CONTRACTORS
         ct1 = ContractorModel.objects.create(

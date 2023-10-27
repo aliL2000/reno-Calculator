@@ -1,5 +1,5 @@
 from django.core import serializers
-from .models import ContractorModel
+from ..models import ContractorModel
 from rest_framework import serializers
 
 

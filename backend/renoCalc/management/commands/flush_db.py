@@ -1,5 +1,8 @@
 from django.core.management.base import BaseCommand
 
+#TO RUN:
+#python manage.py flush_db
+
 class Command(BaseCommand):
     help = 'Flushes the database and resets it to its initial state'
 

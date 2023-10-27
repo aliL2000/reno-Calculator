@@ -7,16 +7,13 @@ from django.contrib.auth.models import AbstractUser
 
 
 class UserModel(AbstractUser):
-    username = models.CharField(max_length=100, unique=True, blank=True, null=True)
-    email = models.EmailField(unique=True, blank=True, null=True)
+    username = None  # Remove username field
+    email = models.EmailField(unique=True)
     phoneNumber = models.CharField(max_length=15, blank=True, null=True)
     address = models.CharField(max_length=100, blank=True, null=True)
 
-    def save(self, *args, **kwargs):
-        if not self.username and not self.email:
-            raise ValidationError("At least one of username or email must have a value.")
-
-        super(UserModel, self).save(*args, **kwargs)
+    USERNAME_FIELD = 'email'  # Use email as the primary identifier
+    REQUIRED_FIELDS = []  # No fields are required upon user creation
 
     def __str__(self):
         return f"{self.first_name} - {self.email}"
