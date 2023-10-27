@@ -94,7 +94,7 @@ DATABASES = {
         'NAME': 'renoCalcDB',          # Name of your PostgreSQL database
         'USER': 'postgresReno',        # Your PostgreSQL username
         'PASSWORD': 'postgresReno',  # Your PostgreSQL password
-        'HOST': 'postgres',       # Set the host to the PostgreSQL server
+        'HOST': 'db',       # Set the host to the PostgreSQL server
         'PORT': '5432',  
     }
 }
