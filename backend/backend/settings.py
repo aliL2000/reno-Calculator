@@ -51,6 +51,18 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:3000",
+    "http://127.0.0.1:3000",
+]
+CORS_ALLOW_CREDENTIALS = True
+CORS_EXPOSE_HEADERS = ["Content-Type", "X-CSRFToken"]
+
+CSRF_TRUSTED_ORIGINS = [
+    "http://localhost:3000",
+    "http://127.0.0.1:3000",
+]
+
 ROOT_URLCONF = 'backend.urls'
 
 TEMPLATES = [
@@ -82,7 +94,7 @@ DATABASES = {
         'USER': 'postgresReno',        # Your PostgreSQL username
         'PASSWORD': 'postgresReno',  # Your PostgreSQL password
         'HOST': 'localhost',       # Set the host to the PostgreSQL server
-        'PORT': '',  
+        'PORT': '5432',  
     }
 }
 
