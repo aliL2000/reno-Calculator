@@ -27,6 +27,9 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+AUTHENTICATION_BACKENDS = [
+    'renoCalc.backends.EmailBackend'
+]
 
 # Application definition
 
