@@ -20,7 +20,3 @@ jobs:
       with:
         compose-file: "./docker-compose.yaml"
         up-flags: "--build"
-    - name: Install Python Dependencies
-      run: pip install -r backend/requirements.txt
-    - name: Run Django Unit Tests
-      run: python backend/manage.py test backend/

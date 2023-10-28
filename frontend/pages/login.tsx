@@ -9,10 +9,8 @@ const Login = () => {
   
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log(formData);    
     try {
-      //TODO:Modify this URL login
-      const response = await axios.post('https://127.0.0.1:8000/renoCalc/login/', formData); 
+      const response = await axios.post('http://127.0.0.1:8000/login/', formData);
       if (response.status === 200) {
         console.log('Login successful');
       } else {

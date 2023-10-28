@@ -91,10 +91,10 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'renoCalcDB',          # Name of your PostgreSQL database
-        'USER': 'postgresReno',        # Your PostgreSQL username
-        'PASSWORD': 'postgresReno',  # Your PostgreSQL password
-        'HOST': 'localhost',       # Set the host to the PostgreSQL server
+        'NAME': 'renoCalcDB',
+        'USER': 'postgresReno',
+        'PASSWORD': 'postgresReno',
+        'HOST': 'db',
         'PORT': '5432',  
     }
 }
