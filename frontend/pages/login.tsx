@@ -9,7 +9,6 @@ const Login = () => {
   
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log(formData);    
     try {
       const response = await axios.post('http://127.0.0.1:8000/login/', formData);
       if (response.status === 200) {

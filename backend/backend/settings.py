@@ -94,7 +94,7 @@ DATABASES = {
         'NAME': 'renoCalcDB',
         'USER': 'postgresReno',
         'PASSWORD': 'postgresReno',
-        'HOST': 'localhost',
+        'HOST': 'db',
         'PORT': '5432',  
     }
 }
